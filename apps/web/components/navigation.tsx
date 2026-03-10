@@ -1,15 +1,9 @@
-import { LINKS, PERSON } from '@workspace/content';
+import { profile } from '@workspace/content';
 import Link from 'next/link';
 
-const NAV: { label: string; href: string; external?: boolean }[] = [
-  { label: 'experience', href: '/experience' },
-  { label: 'work', href: '/work' },
-  { label: 'writing', href: LINKS.blog, external: true },
-  { label: 'about', href: '/about' },
-  { label: 'contact', href: '/contact' },
-];
+const NAV: { label: string; href: string; external?: boolean }[] = [];
 
-export function PortfolioNav() {
+export function Navigation() {
   return (
     <header className="animate-in fade-in slide-in-from-top-1 duration-500 sticky top-0 z-10 border-b border-border/40 bg-background/80 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
@@ -17,7 +11,7 @@ export function PortfolioNav() {
           href="/"
           className="font-mono text-xs font-medium hover:opacity-70 transition-opacity"
         >
-          {PERSON.name}
+          {profile.name}
         </Link>
         <div className="flex gap-6">
           {NAV.map(({ label, href, external }) =>

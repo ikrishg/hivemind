@@ -1,6 +1,6 @@
 'use client';
 
-import { EXPERIENCE } from '@workspace/content';
+import { experiences } from '@workspace/content';
 import {
   HoverCard,
   HoverCardContent,
@@ -9,16 +9,16 @@ import {
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { makeId } from '@/lib/util';
 import { Section } from './section';
-import { S } from './sections-config';
 
 export function ExperienceSection() {
   return (
-    <Section id={S.experience} title="Experience">
+    <Section title="Experience">
       <ul className="divide-y divide-border/40">
-        {EXPERIENCE.map((e, i) => (
+        {experiences.map((e, i) => (
           <motion.li
-            key={e.id}
+            key={makeId(e.title, e.company)}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.07, duration: 0.4, ease: 'easeOut' }}
@@ -26,10 +26,10 @@ export function ExperienceSection() {
             <HoverCard openDelay={120} closeDelay={80}>
               <HoverCardTrigger asChild>
                 <Link
-                  href={`/experience/${e.id}`}
+                  href={`/experience/${makeId(e.title, e.company)}`}
                   className="group flex items-start justify-between gap-4 py-3.5 transition-colors hover:text-foreground sm:items-baseline"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-0">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-0 text-sm">
                     <span className="font-medium group-hover:underline underline-offset-4">
                       {e.title}
                     </span>
@@ -49,7 +49,7 @@ export function ExperienceSection() {
               <HoverCardContent
                 side="top"
                 align="end"
-                className="hidden sm:block max-w-xs whitespace-pre-line text-left text-sm leading-relaxed"
+                className="hidden sm:block max-w-md whitespace-pre-line text-left text-xs leading-relaxed"
               >
                 {e.shortDescription}
               </HoverCardContent>

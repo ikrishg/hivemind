@@ -1,4 +1,4 @@
-import { LINKS, PERSON } from '@workspace/content';
+import { links, profile } from '@workspace/content';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Noto_Serif } from 'next/font/google';
 import '@workspace/ui/globals.css';
@@ -7,9 +7,9 @@ import { cn } from '@workspace/ui/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: PERSON.name,
-  description: PERSON.bio,
-  authors: [{ name: PERSON.name, url: LINKS.blog }],
+  title: profile.name,
+  description: profile.description,
+  authors: [{ name: profile.name, url: links.blog }],
 };
 
 const notoSerif = Noto_Serif({ subsets: ['latin'], variable: '--font-serif' });

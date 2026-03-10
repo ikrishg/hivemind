@@ -1,7 +1,6 @@
-import { type Article, LINKS } from '@workspace/content';
+import { type Article, links } from '@workspace/content';
 import { ArrowUpRight } from 'lucide-react';
 import { Section } from './section';
-import { S } from './sections-config';
 
 const HOME_LIMIT = 3;
 
@@ -9,7 +8,7 @@ export function WritingSection({ articles }: { articles: Article[] }) {
   const visible = articles.slice(0, HOME_LIMIT);
 
   return (
-    <Section id={S.writing} title="Writing">
+    <Section title="Writing">
       {visible.length > 0 ? (
         <>
           <ul className="divide-y divide-border/40">
@@ -43,7 +42,7 @@ export function WritingSection({ articles }: { articles: Article[] }) {
             ))}
           </ul>
           <a
-            href={LINKS.blog}
+            href={links.blog}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -56,7 +55,7 @@ export function WritingSection({ articles }: { articles: Article[] }) {
         <p className="text-sm text-muted-foreground">
           Articles coming soon — visit{' '}
           <a
-            href={LINKS.blog}
+            href={links.blog}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline underline-offset-4"

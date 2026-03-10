@@ -1,51 +1,53 @@
-// ─── Experience ───────────────────────────────────────────────────────────────
-
-export type Month =
-  | 'Jan'
-  | 'Feb'
-  | 'Mar'
-  | 'Apr'
-  | 'May'
-  | 'Jun'
-  | 'Jul'
-  | 'Aug'
-  | 'Sep'
-  | 'Oct'
-  | 'Nov'
-  | 'Dec';
-
-export type MonthYear = `${Month} ${number}`;
+import { type MonthYear, monthYearToDate } from './util';
 
 export interface Experience {
-  /** URL-safe slug used as the route param and markdown file name */
-  id: string;
-  /** Job title / role */
   title: string;
   company: string;
   dateStart: MonthYear;
   dateEnd: MonthYear | 'Present';
-  /** Optional image URLs shown in a grid on the detail page */
+
   images?: string[];
-  /** Short multiline bullet-point summary shown in the hover/tap popover */
+
   shortDescription: string;
-  // Full prose is loaded at runtime from content/experience/[id].md
+
+  content?: string;
 }
 
-export const EXPERIENCE: Experience[] = [
+export const experiences: readonly Experience[] = [
   {
-    id: 'company',
-    title: 'Software Engineer',
-    company: 'Company',
-    dateStart: 'Jan 2024',
-    dateEnd: 'Present',
-    shortDescription: `• Built and shipped features used by thousands of users\n• Improved core API response times by 40%\n• Led migration to TypeScript across the frontend codebase`,
+    title: 'SDE Intern',
+    company: 'PlaylistWise (12LPAClub)',
+    dateStart: 'Jul 2023',
+    dateEnd: 'Sep 2023',
+    shortDescription: `
+• Built 15+ UI/UX functional designs in ReactJS and NextJS
+• Integrated Supabase Postgres to a dynamic CRUD application.
+• Oversaw deployment on PAAS platforms like Appwrite and Netlify
+• Mentored closely by Akshay Narisetti, Founder, Pocket (YC W26)
+`,
   },
   {
-    id: 'previous-company',
-    title: 'Software Engineer Intern',
-    company: 'Previous Company',
-    dateStart: 'Jun 2023',
-    dateEnd: 'Aug 2023',
-    shortDescription: `• Worked on the developer tooling platform\n• Contributed to open-source internal libraries\n• Collaborated with senior engineers on system design`,
+    title: 'Program Management Intern',
+    company: 'Sema Software',
+    dateStart: 'May 2022',
+    dateEnd: 'Sep 2022',
+    shortDescription: `
+• Managed Sema's global ambassador program of 12 global ambassadors to educate young people on code reviews.
+• Maintained the Sema community of 1k+ code reviewers and conducted regular sessions to sustain engagement.
+• Worked under the direct guidance of Harvard Law School Alumni, Matt Van Italie, the founder of Sema Software
+`,
   },
-];
+]
+  .map(
+    (e) =>
+      ({ ...e, shortDescription: e.shortDescription.trim() }) as Experience,
+  )
+  .sort((a, b) => {
+    const dateA = monthYearToDate(
+      a.dateEnd === 'Present' ? a.dateStart : a.dateEnd,
+    );
+    const dateB = monthYearToDate(
+      b.dateEnd === 'Present' ? b.dateStart : b.dateEnd,
+    );
+    return dateB.getTime() - dateA.getTime();
+  });
