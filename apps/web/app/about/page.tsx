@@ -1,7 +1,7 @@
 import { ABOUT_SECTIONS, LINKS, PERSON } from "@workspace/content";
 import { Separator } from "@workspace/ui/components/separator";
-import Image from "next/image";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PortfolioFooter } from "@/components/portfolio/footer";
 import { PortfolioNav } from "@/components/portfolio/nav";
 import { SocialLinks } from "@/components/portfolio/social-links";
@@ -22,7 +22,10 @@ export default function AboutPage() {
 					{ABOUT_SECTIONS.map((section) => {
 						if (section.type === "markdown") {
 							return (
-								<div key={section.content.slice(0, 32)} className="space-y-4 leading-relaxed text-muted-foreground">
+								<div
+									key={section.content.slice(0, 32)}
+									className="space-y-4 leading-relaxed text-muted-foreground"
+								>
 									{section.content.split("\n\n").map((para) => (
 										<p key={para.slice(0, 24)}>{para}</p>
 									))}

@@ -33,18 +33,42 @@ export default function WorkPage() {
 										<span className="flex items-center gap-2">
 											{p.name}
 											{p.deployedUrl && (
-												<a href={p.deployedUrl} target="_blank" rel="noopener noreferrer" aria-label="Live site">
-													<Globe size={12} className="text-muted-foreground hover:text-foreground transition-colors" />
+												<a
+													href={p.deployedUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													aria-label="Live site"
+												>
+													<Globe
+														size={12}
+														className="text-muted-foreground hover:text-foreground transition-colors"
+													/>
 												</a>
 											)}
 											{p.sourceUrl && (
-												<a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label="Source code">
-													<Github size={12} className="text-muted-foreground hover:text-foreground transition-colors" />
+												<a
+													href={p.sourceUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													aria-label="Source code"
+												>
+													<Github
+														size={12}
+														className="text-muted-foreground hover:text-foreground transition-colors"
+													/>
 												</a>
 											)}
 											{p.devlogsUrl && (
-												<a href={p.devlogsUrl} target="_blank" rel="noopener noreferrer" aria-label="Dev logs">
-													<BookOpen size={12} className="text-muted-foreground hover:text-foreground transition-colors" />
+												<a
+													href={p.devlogsUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													aria-label="Dev logs"
+												>
+													<BookOpen
+														size={12}
+														className="text-muted-foreground hover:text-foreground transition-colors"
+													/>
 												</a>
 											)}
 										</span>

@@ -6,8 +6,8 @@ import {
 	HoverCardContent,
 	HoverCardTrigger,
 } from "@workspace/ui/components/hover-card";
-import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { Section } from "./section";
 import { S } from "./sections-config";

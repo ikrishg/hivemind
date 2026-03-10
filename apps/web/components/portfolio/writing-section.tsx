@@ -13,12 +13,12 @@ export function WritingSection({ articles }: { articles: Article[] }) {
 			{visible.length > 0 ? (
 				<>
 					<ul className="divide-y divide-border/40">
-					{visible.map((a, i) => (
-						<li
-							key={a.href}
-							style={{ animationDelay: `${i * 70}ms` }}
-							className="animate-in fade-in slide-in-from-bottom-1 duration-400"
-						>
+						{visible.map((a, i) => (
+							<li
+								key={a.href}
+								style={{ animationDelay: `${i * 70}ms` }}
+								className="animate-in fade-in slide-in-from-bottom-1 duration-400"
+							>
 								<a
 									href={a.href}
 									target="_blank"
