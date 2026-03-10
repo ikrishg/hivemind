@@ -1,7 +1,7 @@
 'use client';
 
 import { PERSON } from '@workspace/content';
-import { motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 import { SocialLinks } from './social-links';
 
 const variants = {
@@ -12,7 +12,7 @@ const variants = {
     filter: 'blur(0px)',
     transition: { delay: i * 0.08, duration: 0.5, ease: 'easeOut' },
   }),
-};
+} as Variants;
 
 export function Hero() {
   return (
