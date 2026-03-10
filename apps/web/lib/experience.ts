@@ -1,5 +1,5 @@
-import { readFileSync } from "fs"
-import { join } from "path"
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 /**
  * Read the markdown content for an experience entry.
@@ -7,10 +7,10 @@ import { join } from "path"
  * Returns an empty string if the file doesn't exist.
  */
 export function readExperienceContent(id: string): string {
-    try {
-        const filePath = join(process.cwd(), "content", "experience", `${id}.md`)
-        return readFileSync(filePath, "utf-8")
-    } catch {
-        return ""
-    }
+  try {
+    const filePath = join(process.cwd(), 'content', 'experience', `${id}.md`);
+    return readFileSync(filePath, 'utf-8');
+  } catch {
+    return '';
+  }
 }
