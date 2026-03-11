@@ -1,17 +1,19 @@
-const monthIndex = ['Jan'
-  , 'Feb'
-  , 'Mar'
-  , 'Apr'
-  , 'May'
-  , 'Jun'
-  , 'Jul'
-  , 'Aug'
-  , 'Sep'
-  , 'Oct'
-  , 'Nov'
-  , 'Dec'] as const;
+const monthIndex = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+] as const;
 
-export type Month = typeof monthIndex[number];
+export type Month = (typeof monthIndex)[number];
 
 export type MonthYear = `${Month} ${number}`;
 
@@ -32,4 +34,21 @@ export function monthYearToDate(monthYear: MonthYear): Date {
   const yearNum = Number(year);
 
   return new Date(yearNum, monthNum, 1, 0, 0, 0);
+}
+
+/** Sort items with dateStart/dateEnd by end date descending, "Present" first. */
+export function sortByDate<
+  T extends { dateStart: MonthYear; dateEnd: MonthYear | 'Present' },
+>(items: T[]): T[] {
+  return items.sort((a, b) => {
+    if (a.dateEnd === 'Present' && b.dateEnd !== 'Present') return -1;
+    if (b.dateEnd === 'Present' && a.dateEnd !== 'Present') return 1;
+    const dateA = monthYearToDate(
+      a.dateEnd === 'Present' ? a.dateStart : a.dateEnd,
+    );
+    const dateB = monthYearToDate(
+      b.dateEnd === 'Present' ? b.dateStart : b.dateEnd,
+    );
+    return dateB.getTime() - dateA.getTime();
+  });
 }

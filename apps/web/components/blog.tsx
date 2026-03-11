@@ -1,6 +1,6 @@
 import { type Article, links } from '@workspace/content';
-import { ArrowUpRight } from 'lucide-react';
 import { Section } from './section';
+import { SectionLink } from './ui/section-link';
 
 const HOME_LIMIT = 3;
 
@@ -22,18 +22,18 @@ export function WritingSection({ articles }: { articles: Article[] }) {
                   href={a.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col gap-0.5 py-3.5 transition-colors hover:text-foreground"
+                  className="group flex flex-col gap-0.5 py-3.5"
                 >
                   <div className="flex items-baseline justify-between gap-4">
                     <span className="font-medium group-hover:underline underline-offset-4">
                       {a.title}
                     </span>
-                    <span className="shrink-0 font-mono text-xs text-muted-foreground">
+                    <span className="shrink-0 font-mono text-sm text-muted-foreground">
                       {a.date}
                     </span>
                   </div>
                   {a.excerpt && (
-                    <span className="line-clamp-2 text-sm text-muted-foreground">
+                    <span className="line-clamp-2 text-base text-muted-foreground">
                       {a.excerpt}
                     </span>
                   )}
@@ -41,15 +41,11 @@ export function WritingSection({ articles }: { articles: Article[] }) {
               </li>
             ))}
           </ul>
-          <a
+          <SectionLink
             href={links.blog}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            read all on blog.krishg.com
-            <ArrowUpRight size={11} />
-          </a>
+            label="read all on blog.krishg.com"
+            external
+          />
         </>
       ) : (
         <p className="text-sm text-muted-foreground">

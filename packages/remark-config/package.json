@@ -1,17 +1,19 @@
 {
-  "name": "@workspace/content",
+  "name": "@workspace/remark-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "remark-gfm": "^4.0.1"
+  },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",
     "typescript": "^5.9.3"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./articles": "./src/articles.ts"
+    ".": "./src/index.ts"
   }
 }

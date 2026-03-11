@@ -1,7 +1,8 @@
 export const profile = {
   name: 'Krish Gupta',
   title: 'Economist, Writer, Software Engineer',
-  description: 'Building things that help people understand themselves better and make micro-adaptations to improve their lives, while studying human behavior and decision-making in economic contexts.',
+  description:
+    'Building things that help people understand themselves better and make micro-adaptations to improve their lives, while studying human behavior and decision-making in economic contexts.',
   location: 'Delhi, India',
 } as const;
 

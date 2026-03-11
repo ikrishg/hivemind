@@ -1,7 +1,10 @@
-import { profile } from '@workspace/content';
+import { links, profile } from '@workspace/content';
 import Link from 'next/link';
 
-const NAV: { label: string; href: string; external?: boolean }[] = [];
+const NAV: { label: string; href: string; external?: boolean }[] = [
+  { label: 'work', href: '/work' },
+  { label: 'blog', href: links.blog, external: true },
+];
 
 export function Navigation() {
   return (
@@ -9,7 +12,7 @@ export function Navigation() {
       <nav className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="font-mono text-xs font-medium hover:opacity-70 transition-opacity"
+          className="font-mono text-sm font-medium transition-opacity hover:opacity-60"
         >
           {profile.name}
         </Link>
@@ -21,7 +24,7 @@ export function Navigation() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs capitalize text-muted-foreground transition-colors hover:text-foreground"
+                className="font-mono text-sm capitalize text-muted-foreground transition-colors hover:text-foreground"
               >
                 {label}
               </a>
@@ -29,7 +32,7 @@ export function Navigation() {
               <Link
                 key={label}
                 href={href}
-                className="font-mono text-xs capitalize text-muted-foreground transition-colors hover:text-foreground"
+                className="font-mono text-sm capitalize text-muted-foreground transition-colors hover:text-foreground"
               >
                 {label}
               </Link>

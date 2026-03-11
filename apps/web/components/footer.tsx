@@ -7,10 +7,10 @@ export function PortfolioFooter() {
       <div className="mx-auto max-w-2xl px-6">
         <Separator className="mb-8" />
         <div className="flex items-center justify-between">
-          <span className="font-mono text-xs text-muted-foreground">
+          <span className="font-mono text-sm text-muted-foreground">
             {profile.name}
           </span>
-          <span className="font-mono text-xs text-muted-foreground">
+          <span className="font-mono text-sm text-muted-foreground">
             © {new Date().getFullYear()}
           </span>
         </div>

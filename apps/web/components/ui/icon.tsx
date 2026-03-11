@@ -5,33 +5,58 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@workspace/ui/components/tooltip';
-import type { LucideProps } from 'lucide-react';
+import type { LucideIcon as LucideIconType } from 'lucide-react';
 import Link from 'next/link';
-import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
-export function Icon({
+/**
+ * An icon wrapped in a tooltip. Renders as an `<a>` (via Next `<Link>`) by
+ * default. When `stopPropagation` is true it renders a `<button>` that opens
+ * the href in a new tab while preventing parent click handlers from firing
+ * (useful inside clickable cards).
+ */
+export function IconLink({
   label,
   href,
   LucideIcon,
+  size = 15,
+  stopPropagation,
 }: {
   label: string;
   href: string;
-  LucideIcon: ForwardRefExoticComponent<
-    Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
-  >;
-}): import('react').JSX.Element {
+  LucideIcon: LucideIconType;
+  size?: number;
+  stopPropagation?: boolean;
+}) {
+  const iconEl = <LucideIcon size={size} />;
+  const cls = 'text-muted-foreground transition-colors hover:text-foreground';
+
   return (
-    <Tooltip key={label}>
-      <TooltipTrigger asChild>
-        <Link
-          href={href}
-          aria-label={label}
-          target={href.startsWith('mailto:') ? undefined : '_blank'}
-          rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <LucideIcon size={15} />
-        </Link>
+    <Tooltip>
+      <TooltipTrigger>
+        {stopPropagation ? (
+          <button
+            type="button"
+            aria-label={label}
+            className={cls}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(href, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            {iconEl}
+          </button>
+        ) : (
+          <Link
+            href={href}
+            aria-label={label}
+            target={href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+            className={cls}
+          >
+            {iconEl}
+          </Link>
+        )}
       </TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>
     </Tooltip>

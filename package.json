@@ -6,12 +6,15 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",
     "turbo": "^2.8.8",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=20"

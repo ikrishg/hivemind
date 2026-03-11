@@ -1,4 +1,4 @@
-import { type MonthYear, monthYearToDate } from './util';
+import { type MonthYear, sortByDate } from './util';
 
 export interface Experience {
   title: string;
@@ -13,6 +13,15 @@ export interface Experience {
   content?: string;
 }
 
+export enum MiscCategory {
+  Volunteering = 'Volunteering',
+  ExtraCurricular = 'Extra-Curricular',
+  Honour = 'Honour',
+}
+
+/** Experience without long-form content — used for volunteering, extra-curriculars, honours. */
+export type MiscExperience = Omit<Experience, 'content'> & { category: MiscCategory };
+
 export const experiences: readonly Experience[] = [
   {
     title: 'SDE Intern',
@@ -25,6 +34,7 @@ export const experiences: readonly Experience[] = [
 • Oversaw deployment on PAAS platforms like Appwrite and Netlify
 • Mentored closely by Akshay Narisetti, Founder, Pocket (YC W26)
 `,
+    content: ``,
   },
   {
     title: 'Program Management Intern',
@@ -36,18 +46,12 @@ export const experiences: readonly Experience[] = [
 • Maintained the Sema community of 1k+ code reviewers and conducted regular sessions to sustain engagement.
 • Worked under the direct guidance of Harvard Law School Alumni, Matt Van Italie, the founder of Sema Software
 `,
+    content: ``,
   },
 ]
   .map(
-    (e) =>
-      ({ ...e, shortDescription: e.shortDescription.trim() }) as Experience,
-  )
-  .sort((a, b) => {
-    const dateA = monthYearToDate(
-      a.dateEnd === 'Present' ? a.dateStart : a.dateEnd,
-    );
-    const dateB = monthYearToDate(
-      b.dateEnd === 'Present' ? b.dateStart : b.dateEnd,
-    );
-    return dateB.getTime() - dateA.getTime();
-  });
+    // Assertion needed: array literal widens MonthYear literals to string
+    (e) => ({ ...e, shortDescription: e.shortDescription.trim() }) as Experience,
+  );
+
+sortByDate(experiences as Experience[]);

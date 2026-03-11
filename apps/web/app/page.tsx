@@ -1,31 +1,41 @@
-import { fetchArticles } from '@workspace/content';
+import { fetchArticles } from '@workspace/content/articles';
+import { Suspense } from 'react';
 import { WritingSection } from '@/components/blog';
 import { ExperienceSection } from '@/components/experience';
-import { PortfolioFooter } from '@/components/footer';
 import { Hero } from '@/components/hero';
-import { Navigation } from '@/components/navigation';
 import { WorkSection } from '@/components/projects';
 import { Section } from '@/components/section';
+import { makeId } from '@/lib/util';
 
-export default async function Page() {
+async function ArticlesLoader() {
   const articles = await fetchArticles();
+  return <WritingSection articles={articles} />;
+}
 
+function WritingSkeleton() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      <main className="mx-auto max-w-2xl px-6 py-20">
-        <Hero />
-        <Section title="Disclaimer">
-          <p className="text-sm text-muted-foreground">
-            Hi, I'm still working on this portfolio. I need to add more
-            projects, write about more experiences and polish the design.
-          </p>
-        </Section>
-        <ExperienceSection />
-        <WorkSection />
-        <WritingSection articles={articles} />
-      </main>
-      <PortfolioFooter />
-    </div>
+    <Section title="Writing">
+      <div className="space-y-4">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div
+            key={makeId(`skeleton-${i}`)}
+            className="h-12 animate-pulse rounded bg-muted"
+          />
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <Hero />
+      <ExperienceSection />
+      <WorkSection />
+      <Suspense fallback={<WritingSkeleton />}>
+        <ArticlesLoader />
+      </Suspense>
+    </>
   );
 }

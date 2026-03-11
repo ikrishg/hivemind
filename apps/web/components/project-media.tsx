@@ -2,19 +2,34 @@
 
 import type { Project } from '@workspace/content';
 import { BookOpen, Github, Globe } from 'lucide-react';
-import { Icon } from './ui/icon';
+import { IconLink } from './ui/icon';
 
 export function ProjectMedia({ p }: { p: Project }) {
   return (
-    <span className="flex items-center gap-1">
+    <span className="flex items-center gap-2">
       {p.deployedUrl && (
-        <Icon label="View Deployed" href={p.deployedUrl} LucideIcon={Globe} />
+        <IconLink
+          label="View Deployed"
+          href={p.deployedUrl}
+          LucideIcon={Globe}
+          stopPropagation
+        />
       )}
       {p.sourceUrl && (
-        <Icon label="View Source" href={p.sourceUrl} LucideIcon={Github} />
+        <IconLink
+          label="View Source"
+          href={p.sourceUrl}
+          LucideIcon={Github}
+          stopPropagation
+        />
       )}
       {p.devlogsUrl && (
-        <Icon label="View Dev Logs" href={p.devlogsUrl} LucideIcon={BookOpen} />
+        <IconLink
+          label="View Dev Logs"
+          href={p.devlogsUrl}
+          LucideIcon={BookOpen}
+          stopPropagation
+        />
       )}
     </span>
   );

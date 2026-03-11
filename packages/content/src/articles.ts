@@ -59,7 +59,10 @@ export async function fetchArticles(): Promise<Article[]> {
       next: { revalidate: 3600 },
     } as NextRequestInit);
 
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.warn(`[fetchArticles] RSS feed returned ${res.status}`);
+      return [];
+    }
 
     const xml = await res.text();
 
@@ -79,7 +82,8 @@ export async function fetchArticles(): Promise<Article[]> {
       ...rest,
       date: formatDate(_rawDate),
     }));
-  } catch {
+  } catch (error) {
+    console.warn('[fetchArticles] Failed to fetch RSS feed:', error);
     return [];
   }
 }

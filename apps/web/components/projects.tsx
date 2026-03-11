@@ -1,10 +1,8 @@
 import { projects } from '@workspace/content';
-import { Badge } from '@workspace/ui/components/badge';
-import { ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
+import { makeId } from '@/lib/util';
 import { ProjectCard } from './project-card';
-import { ProjectMedia } from './project-media';
 import { Section } from './section';
+import { SectionLink } from './ui/section-link';
 
 const HOME_LIMIT = 4;
 
@@ -21,19 +19,11 @@ export function WorkSection() {
             style={{ animationDelay: `${i * 60}ms` }}
             className="animate-in fade-in slide-in-from-bottom-1 duration-400"
           >
-            <ProjectCard p={p} />
+            <ProjectCard p={p} href={`/work/${makeId(p.name)}`} />
           </li>
         ))}
       </ul>
-      {hasMore && (
-        <Link
-          href="/work"
-          className="mt-4 flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
-        >
-          view all projects
-          <ArrowUpRight size={11} />
-        </Link>
-      )}
+      {hasMore && <SectionLink href="/work" label="view all projects" />}
     </Section>
   );
 }

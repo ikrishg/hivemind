@@ -6,10 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@workspace/ui/components/card';
+import Link from 'next/link';
 import { ProjectMedia } from './project-media';
 
-export function ProjectCard({ p }: { p: Project }) {
-  return (
+export function ProjectCard({ p, href }: { p: Project; href?: string }) {
+  const card = (
     <Card
       size="default"
       className="transition-transform duration-200 hover:scale-[1.01] hover:shadow-sm"
@@ -28,4 +29,14 @@ export function ProjectCard({ p }: { p: Project }) {
       </CardHeader>
     </Card>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="block">
+        {card}
+      </Link>
+    );
+  }
+
+  return card;
 }
