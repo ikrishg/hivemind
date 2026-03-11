@@ -1,7 +1,6 @@
 import { links, profile } from '@workspace/content';
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono, Noto_Serif } from 'next/font/google';
-//@ts-expect-error
 import '@workspace/ui/globals.css';
 import { TooltipProvider } from '@workspace/ui/components/tooltip';
 import { cn } from '@workspace/ui/lib/utils';
