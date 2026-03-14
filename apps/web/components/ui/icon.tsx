@@ -6,7 +6,6 @@ import {
   TooltipTrigger,
 } from '@workspace/ui/components/tooltip';
 import type { LucideIcon as LucideIconType } from 'lucide-react';
-import Link from 'next/link';
 
 /**
  * An icon wrapped in a tooltip. Renders as an `<a>` (via Next `<Link>`) by
@@ -30,33 +29,30 @@ export function IconLink({
   const iconEl = <LucideIcon size={size} />;
   const cls = 'text-muted-foreground transition-colors hover:text-foreground';
 
+  const openHref = () => {
+    if (href.startsWith('mailto:')) {
+      window.location.href = href;
+      return;
+    }
+
+    window.open(href, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <Tooltip>
-      <TooltipTrigger>
-        {stopPropagation ? (
-          <button
-            type="button"
-            aria-label={label}
-            className={cls}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              window.open(href, '_blank', 'noopener,noreferrer');
-            }}
-          >
-            {iconEl}
-          </button>
-        ) : (
-          <Link
-            href={href}
-            aria-label={label}
-            target={href.startsWith('mailto:') ? undefined : '_blank'}
-            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-            className={cls}
-          >
-            {iconEl}
-          </Link>
-        )}
+      <TooltipTrigger
+        aria-label={label}
+        className={cls}
+        onClick={(e) => {
+          if (stopPropagation) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+
+          openHref();
+        }}
+      >
+        {iconEl}
       </TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>
     </Tooltip>

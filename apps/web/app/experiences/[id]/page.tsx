@@ -10,15 +10,17 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return experiences.map((e) => ({
-    id: makeId(e.title, e.company),
-  }));
+  return experiences
+    .filter((e) => Boolean(e.content))
+    .map((e) => ({
+      id: makeId(e.title, e.company),
+    }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const experience = experiences.find((e) => makeId(e.title, e.company) === id);
-  if (!experience) return {};
+  if (!experience || !experience.content) return {};
   return { title: `${experience.title} @ ${experience.company}` };
 }
 
@@ -26,12 +28,12 @@ export default async function ExperienceDetailPage({ params }: Props) {
   const { id } = await params;
   const experience = experiences.find((e) => makeId(e.title, e.company) === id);
 
-  if (!experience) notFound();
+  if (!experience || !experience.content) notFound();
 
   return (
     <DetailPageLayout
-      backHref="/"
-      backLabel="back home"
+      backHref="/experiences"
+      backLabel="back to experiences"
       header={
         <>
           <h1 className="mb-2 text-2xl font-medium">{experience.title}</h1>

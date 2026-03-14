@@ -1,15 +1,23 @@
 import { MiscCategory, miscellaneous } from '@workspace/content';
 import { Badge } from '@workspace/ui/components/badge';
 import type { Metadata } from 'next';
+import { MediaGallery } from '@/components/media-gallery';
 import { BackLink } from '@/components/ui/back-link';
 import { makeId } from '@/lib/util';
 
 export const metadata: Metadata = { title: 'Miscellaneous' };
 
-const categoryStyle: Record<MiscCategory, { variant: 'default' | 'secondary' | 'outline'; className?: string }> = {
+const categoryStyle: Record<
+  MiscCategory,
+  { variant: 'default' | 'secondary' | 'outline'; className?: string }
+> = {
   [MiscCategory.Volunteering]: { variant: 'default' },
   [MiscCategory.ExtraCurricular]: { variant: 'secondary' },
-  [MiscCategory.Honour]: { variant: 'outline', className: 'border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-400' },
+  [MiscCategory.Honour]: {
+    variant: 'outline',
+    className:
+      'border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-400',
+  },
 };
 
 export default function MiscellaneousPage() {
@@ -41,6 +49,13 @@ export default function MiscellaneousPage() {
               <p className="text-sm text-muted-foreground whitespace-pre-line">
                 {item.shortDescription}
               </p>
+              {item.media && item.media.length > 0 && (
+                <MediaGallery
+                  media={item.media}
+                  title={item.title}
+                  maxHeight={300}
+                />
+              )}
             </div>
           </li>
         ))}

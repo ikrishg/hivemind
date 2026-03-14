@@ -17,7 +17,7 @@ export function ProjectCard({ p, href }: { p: Project; href?: string }) {
     >
       <CardHeader>
         <CardTitle className="mb-2">
-          <span className="flex w-full items-center justify-between">
+          <span className="flex w-full items-center justify-between flex-wrap gap-2">
             <span className="flex items-center gap-2">
               <span className="text-base">{p.name}</span>
               <ProjectMedia p={p} />

@@ -1,12 +1,20 @@
 import { type MonthYear, sortByDate } from './util';
 
+export type MediaType = 'image' | 'video' | 'link' | 'file';
+
+export interface MediaItem {
+  type: MediaType;
+  src: string;
+  text?: string;
+}
+
 export interface Experience {
   title: string;
   company: string;
   dateStart: MonthYear;
   dateEnd: MonthYear | 'Present';
 
-  images?: string[];
+  media?: MediaItem[];
 
   shortDescription: string;
 
@@ -20,7 +28,9 @@ export enum MiscCategory {
 }
 
 /** Experience without long-form content — used for volunteering, extra-curriculars, honours. */
-export type MiscExperience = Omit<Experience, 'content'> & { category: MiscCategory };
+export type MiscExperience = Omit<Experience, 'content'> & {
+  category: MiscCategory;
+};
 
 export const experiences: readonly Experience[] = [
   {
@@ -34,7 +44,6 @@ export const experiences: readonly Experience[] = [
 • Oversaw deployment on PAAS platforms like Appwrite and Netlify
 • Mentored closely by Akshay Narisetti, Founder, Pocket (YC W26)
 `,
-    content: ``,
   },
   {
     title: 'Program Management Intern',
@@ -46,12 +55,10 @@ export const experiences: readonly Experience[] = [
 • Maintained the Sema community of 1k+ code reviewers and conducted regular sessions to sustain engagement.
 • Worked under the direct guidance of Harvard Law School Alumni, Matt Van Italie, the founder of Sema Software
 `,
-    content: ``,
   },
-]
-  .map(
-    // Assertion needed: array literal widens MonthYear literals to string
-    (e) => ({ ...e, shortDescription: e.shortDescription.trim() }) as Experience,
-  );
+].map(
+  // Assertion needed: array literal widens MonthYear literals to string
+  (e) => ({ ...e, shortDescription: e.shortDescription.trim() }) as Experience,
+);
 
 sortByDate(experiences as Experience[]);
