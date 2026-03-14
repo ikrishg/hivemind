@@ -44,6 +44,13 @@ export const experiences: readonly Experience[] = [
 • Oversaw deployment on PAAS platforms like Appwrite and Netlify
 • Mentored closely by Akshay Narisetti, Founder, Pocket (YC W26)
 `,
+    media: [
+      {
+        type: 'file',
+        text: '12LPAClub Offer Letter',
+        src: 'https://krish.pics/cdn/12lpaclub-offer',
+      },
+    ],
   },
   {
     title: 'Program Management Intern',

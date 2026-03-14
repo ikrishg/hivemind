@@ -13,6 +13,13 @@ const volunteering: MiscExperience[] = [
     shortDescription: `• Organised 25 in-person seminars in different colleges across 5 cities.
 • Funnelled more than 1000 attendees to the community and other community programs
 • Events had an average 65% active participation from students during workshops.`,
+    media: [
+      {
+        type: 'file',
+        text: 'Appointment Letter',
+        src: cdn('eduhub-community-manager-appointment'),
+      },
+    ],
   },
   {
     category: MiscCategory.Volunteering,
@@ -23,6 +30,13 @@ const volunteering: MiscExperience[] = [
     shortDescription: `• Built automation workflows such as Discord Bots that saw use by 5k+ members.
 • Helped grow the community by 40% over the span of 3 months.
 • Improved community engagement on Discord channels by 300%`,
+    media: [
+      {
+        type: 'file',
+        text: 'Offer Letter',
+        src: cdn('eduhub-devrel-offer'),
+      },
+    ],
   },
   {
     category: MiscCategory.Volunteering,
@@ -33,6 +47,14 @@ const volunteering: MiscExperience[] = [
     shortDescription: `• Organised 100+ attendee virtual events
 • Investigated and explored 12+ Event Management platforms
 • Coordinated events with 60+ community partners, and advised them on event organisation.`,
+    media: [
+      { type: 'image', src: cdn('gssoc-lor') },
+      {
+        type: 'file',
+        text: 'Offer Letter',
+        src: cdn('gssoc-offer'),
+      },
+    ],
   },
   {
     category: MiscCategory.Volunteering,
@@ -46,6 +68,11 @@ const volunteering: MiscExperience[] = [
     media: [
       { type: 'image', src: cdn('htm5-1') },
       { type: 'image', src: cdn('htm5-2') },
+      {
+        type: 'file',
+        text: 'HackTheMountains 5.0 Certificate',
+        src: cdn('htm5-certificate'),
+      },
     ],
   },
   {
@@ -72,6 +99,11 @@ const volunteering: MiscExperience[] = [
       { type: 'image', src: cdn('htm4-1') },
       { type: 'image', src: cdn('htm4-2') },
       { type: 'image', src: cdn('htm4-3') },
+      {
+        type: 'file',
+        text: 'HackTheMountains 4.0 Certificate',
+        src: cdn('htm4-certificate'),
+      },
     ],
   },
   {
@@ -167,6 +199,11 @@ const extracurriculars: MiscExperience[] = [
       { type: 'image', src: cdn('prumun24-afterphoto') },
       { type: 'image', src: cdn('prumun24-memento') },
       { type: 'image', src: cdn('prumun24-sec') },
+      {
+        type: 'file',
+        text: 'PRUMUN 2024 Certificate',
+        src: cdn('prumun24-certificate'),
+      },
     ],
   },
   {
@@ -200,6 +237,16 @@ const extracurriculars: MiscExperience[] = [
       { type: 'image', src: cdn('mun-soc-1') },
       { type: 'image', src: cdn('mun-soc-2') },
       { type: 'image', src: cdn('mun-soc-3') },
+      {
+        type: 'file',
+        text: 'EB Appointment Letter I',
+        src: cdn('mun-society-1'),
+      },
+      {
+        type: 'file',
+        text: 'EB Appointment Letter II',
+        src: cdn('mun-society-2'),
+      },
     ],
   },
   {
@@ -230,7 +277,44 @@ const extracurriculars: MiscExperience[] = [
   },
 ];
 
-const honours: MiscExperience[] = [];
+const honours: MiscExperience[] = [
+  {
+    category: MiscCategory.Honour,
+    title: 'LiFT Scholar',
+    company: 'The Linux Foundation',
+    dateStart: 'Jun 2023',
+    dateEnd: 'Jun 2023',
+    shortDescription: `
+• Selected as one of the top applicants for the LiFT Scholarship by The Linux Foundation, a prestigious recognition in the open source community.
+• Received a full scholarship to study Linux System Administration, gaining in-depth knowledge and skills in Linux, which is fundamental to modern software development and operations.
+    `,
+    media: [
+      {
+        type: 'link',
+        text: 'Linux Foundation LiFT Scholar Archive (Listed under 2023)',
+        src: 'https://www.linuxfoundation.org/about/lift-scholarships-archive'
+      }
+    ]
+  },
+  {
+    category: MiscCategory.Honour,
+    title: 'Fastn Technology Champion',
+    company: 'FifthTry',
+    dateStart: 'Oct 2023',
+    dateEnd: 'Oct 2023',
+    shortDescription: `
+• Demonstrated exceptional skill in the use of fastn, earning recognition as a Technology Champion.
+• Built several projects, themes and guide for the use fastn and ftd, which were recognised by the fastn team and community.
+`,
+    media: [
+      {
+        type: 'file',
+        text: 'Certificate',
+        src: cdn('fastn-champion'),
+      }
+    ]
+  },
+];
 
 /** All miscellaneous experiences merged into one chronologically-sorted list. */
 export const miscellaneous: readonly MiscExperience[] =
