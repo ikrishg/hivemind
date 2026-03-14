@@ -62,6 +62,13 @@ export const experiences: readonly Experience[] = [
 • Maintained the Sema community of 1k+ code reviewers and conducted regular sessions to sustain engagement.
 • Worked under the direct guidance of Harvard Law School Alumni, Matt Van Italie, the founder of Sema Software
 `,
+    media: [
+      {
+        type: 'file',
+        text: 'Letter of Recommendation from Founder, Matt Van Italie',
+        src: 'https://krish.pics/cdn/sema-lor',
+      }
+    ],
   },
 ].map(
   // Assertion needed: array literal widens MonthYear literals to string

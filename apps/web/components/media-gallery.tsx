@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 export function MediaGallery({
   media,
   title,
-  maxHeight = 300,
+  maxHeight = 200,
 }: {
   media: MediaItem[];
   title: string;
@@ -21,8 +21,9 @@ export function MediaGallery({
   const attachmentMedia = media.filter(
     (item) => item.type === 'link' || item.type === 'file',
   );
-  const fileMedia = attachmentMedia.filter((item) => item.type === 'file');
-  const linkMedia = attachmentMedia.filter((item) => item.type === 'link');
+  const linkMedia = attachmentMedia.filter(
+    (item) => item.type === 'file' || item.type === 'link',
+  );
 
   const [activeMedia, setActiveMedia] = useState<MediaItem | null>(null);
 
@@ -81,25 +82,6 @@ export function MediaGallery({
           </div>
         )}
 
-        {fileMedia.length > 0 && (
-          <div className="space-y-2">
-            {fileMedia.map((item) => (
-              <Link
-                key={item.src}
-                href={item.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-foreground/90 transition-colors hover:bg-muted/45"
-              >
-                <span className="font-medium">
-                  {item.text ?? 'Download file'}
-                </span>
-                <Download size={16} className="text-muted-foreground" />
-              </Link>
-            ))}
-          </div>
-        )}
-
         {linkMedia.length > 0 && (
           <div className="space-y-2">
             {linkMedia.map((item) => (
@@ -108,14 +90,16 @@ export function MediaGallery({
                 href={item.src}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm text-primary transition-colors hover:bg-primary/10"
+                className="flex w-full items-center justify-between rounded-md text-sm text-primary hover:underline underline-offset-4"
               >
                 <span className="flex items-center gap-2">
-                  <span className="underline underline-offset-4">
-                    {item.text ?? `Open ${item.type}`}
-                  </span>
+                  {item.text ?? `Open ${item.type}`}
                 </span>
-                <ExternalLink size={16} className="text-primary" />
+                {item.type === 'link' ? (
+                  <ExternalLink size={16} className="text-primary" />
+                ) : (
+                  <Download size={16} className="text-primary" />
+                )}
               </Link>
             ))}
           </div>

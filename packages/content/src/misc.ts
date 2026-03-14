@@ -115,6 +115,12 @@ const volunteering: MiscExperience[] = [
     shortDescription: `• Developed technical resources for participants, such as discord-bot-template, cli-tool-template, etc.
 • Led the development of the Website and other utilities for the Hackathon.
 • Conducted 3 technical workshops with a footfall of 100+ attendees.`,
+    media: [
+      { type: 'link', text: 'FreyHacks GitHub Organisation', src: 'https://github.com/FreyHacks' },
+      { type: 'link', text: 'FreyHacks on DevPost', src: 'https://freyhacks.devpost.com' },
+      { type: 'link', text: '13 y/o Krish taking a workshop on building a Node.Js CLI', src: 'https://www.youtube.com/watch?v=r9ph-b7dgtw' },
+      { type: 'link', text: 'FreyHacks on the media (Issuewire.com)', src: 'https://www.issuewire.com/student-organized-hackathon-freyhacks-helps-500-students-around-the-world-break-into-the-tech-culture-1736962967168419' }
+    ]
   },
   {
     category: MiscCategory.Volunteering,
@@ -136,6 +142,10 @@ const volunteering: MiscExperience[] = [
 • Built 5 massive internal utility projects for EddieHub tools.
 • Held 4 standup/community calls for the EddieHub community.
 • Been a speaker at EddieCon 0.2 with an audience of 100+ open source maintainers and contributors.`,
+    media: [
+      { type: 'link', text: 'EddieHub GitHub Organisation', src: 'https://github.com/EddieHubCommunity' },
+      { type: 'link', text: 'EddieCon 0.2 Talk', src: 'https://www.youtube.com/watch?v=7oeW7UPR5aw' },
+    ]
   },
   {
     category: MiscCategory.Volunteering,
@@ -145,6 +155,9 @@ const volunteering: MiscExperience[] = [
     dateEnd: 'Sep 2023',
     shortDescription: `• Maintained various fundamental projects of the WebXDAO
 • Mentored incoming contributors and ran office hours on Discord`,
+    media: [
+      { type: 'link', text: 'WebXDAO GitHub Organisation', src: 'https://github.com/WebXDAO' },
+    ]
   },
 ];
 
@@ -165,6 +178,7 @@ const extracurriculars: MiscExperience[] = [
       { type: 'image', src: cdn('prumun4-gavel') },
       { type: 'image', src: cdn('prumun4-memento') },
       { type: 'image', src: cdn('prumun4-sec') },
+      /** TODO: Put certificate */
     ],
   },
   {
@@ -204,6 +218,9 @@ const extracurriculars: MiscExperience[] = [
         text: 'PRUMUN 2024 Certificate',
         src: cdn('prumun24-certificate'),
       },
+      /**
+       * TODO: Put LOR here
+       */
     ],
   },
   {
@@ -263,6 +280,9 @@ const extracurriculars: MiscExperience[] = [
       { type: 'image', src: cdn('content-1') },
       { type: 'image', src: cdn('content-2') },
       { type: 'image', src: cdn('content-3') },
+      { type: 'link', text: 'Twitter Profile', src: 'https://twitter.com/krishstrucktech' },
+      { type: 'link', text: 'Blog', src: 'https://blog.krishg.com' },
+      { type: 'link', text: 'Discord', src: 'https://discord.com/invite/XKbtzF6kUs' },
     ],
   },
   {
@@ -274,6 +294,9 @@ const extracurriculars: MiscExperience[] = [
     shortDescription: `• Undertook collegiate courses on Computer Science
 • Built 12 micro-projects in 2 weeks
 • Engaged in research and programming training.`,
+    media: [
+      /** TODO: Put certificate here */
+    ]
   },
 ];
 

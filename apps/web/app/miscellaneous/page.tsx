@@ -53,7 +53,7 @@ export default function MiscellaneousPage() {
                 <MediaGallery
                   media={item.media}
                   title={item.title}
-                  maxHeight={300}
+                  maxHeight={200}
                 />
               )}
             </div>

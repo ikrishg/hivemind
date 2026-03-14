@@ -35,7 +35,7 @@ export default function ExperiencesPage() {
                 <MediaGallery
                   media={experience.media}
                   title={experience.title}
-                  maxHeight={300}
+                  maxHeight={200}
                 />
               )}
             </div>
