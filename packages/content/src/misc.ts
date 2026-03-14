@@ -6,6 +6,36 @@ const cdn = (id: string) => `https://krish.pics/cdn/${id}`;
 const volunteering: MiscExperience[] = [
   {
     category: MiscCategory.Volunteering,
+    title: 'Community Manager',
+    company: 'EduHub Community',
+    dateStart: 'Aug 2023',
+    dateEnd: 'Jan 2024',
+    shortDescription: `• Organised 25 in-person seminars in different colleges across 5 cities.
+• Funnelled more than 1000 attendees to the community and other community programs
+• Events had an average 65% active participation from students during workshops.`,
+  },
+  {
+    category: MiscCategory.Volunteering,
+    title: 'DevREL',
+    company: 'EduHub',
+    dateStart: 'Jun 2022',
+    dateEnd: 'Sep 2022',
+    shortDescription: `• Built automation workflows such as Discord Bots that saw use by 5k+ members.
+• Helped grow the community by 40% over the span of 3 months.
+• Improved community engagement on Discord channels by 300%`,
+  },
+  {
+    category: MiscCategory.Volunteering,
+    title: 'Event Manager',
+    company: 'GirlScript Summer of Code',
+    dateStart: 'May 2023',
+    dateEnd: 'Sep 2023',
+    shortDescription: `• Organised 100+ attendee virtual events
+• Investigated and explored 12+ Event Management platforms
+• Coordinated events with 60+ community partners, and advised them on event organisation.`,
+  },
+  {
+    category: MiscCategory.Volunteering,
     title: 'Advisor',
     company: 'HackTheMountains 5.0',
     dateStart: 'Jun 2024',
