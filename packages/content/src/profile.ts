@@ -12,5 +12,5 @@ export const links = {
   linkedin: 'https://linkedin.com/in/kkrishguptaa',
   twitter: 'https://x.com/krishstrucktech',
   blog: 'https://blog.krishg.com',
-  resume: 'https://resume.krishg.com',
+  // resume: 'https://resume.krishg.com',
 } as const;

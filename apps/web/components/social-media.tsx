@@ -6,7 +6,7 @@ import { IconLink } from './ui/icon';
 
 const socials = [
   { href: `mailto:${links.email}`, label: 'Email', icon: Mail },
-  { href: links.resume, label: 'Resume', icon: FileText },
+  // { href: links.resume, label: 'Resume', icon: FileText },
   { href: links.github, label: 'GitHub', icon: Github },
   { href: links.linkedin, label: 'LinkedIn', icon: Linkedin },
   { href: links.twitter, label: 'Twitter / X', icon: Twitter },
