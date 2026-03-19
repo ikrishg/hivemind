@@ -67,7 +67,7 @@ export const experiences: readonly Experience[] = [
         type: 'file',
         text: 'Letter of Recommendation from Founder, Matt Van Italie',
         src: 'https://krish.pics/cdn/sema-lor',
-      }
+      },
     ],
   },
 ].map(

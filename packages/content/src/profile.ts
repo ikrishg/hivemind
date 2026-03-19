@@ -7,7 +7,7 @@ export const profile = {
 } as const;
 
 export const links = {
-  email: 'send@krishg.com',
+  email: 'krish@krishg.com',
   github: 'https://github.com/kkrishguptaa',
   linkedin: 'https://linkedin.com/in/kkrishguptaa',
   twitter: 'https://x.com/krishstrucktech',

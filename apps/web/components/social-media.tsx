@@ -1,7 +1,7 @@
 'use client';
 
 import { links } from '@workspace/content';
-import { FileText, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { IconLink } from './ui/icon';
 
 const socials = [
