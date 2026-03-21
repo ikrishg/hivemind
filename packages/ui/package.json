@@ -21,13 +21,13 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.2.1",
-    "@turbo/gen": "2.8.17",
+    "@tailwindcss/postcss": "4.2.2",
+    "@turbo/gen": "2.8.18",
     "@types/node": "25.5.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@workspace/typescript-config": "workspace:*",
-    "tailwindcss": "4.2.1",
+    "tailwindcss": "4.2.2",
     "typescript": "5.9.3"
   },
   "exports": {
