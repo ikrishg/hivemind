@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",
-    "turbo": "2.8.18",
+    "turbo": "2.8.19",
     "typescript": "5.9.3",
     "vitest": "4.1.0"
   },
