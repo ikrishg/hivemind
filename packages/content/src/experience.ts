@@ -48,7 +48,7 @@ export const experiences: readonly Experience[] = [
       {
         type: 'file',
         text: '12LPAClub Offer Letter',
-        src: 'https://krish.pics/cdn/12lpaclub-offer',
+        src: 'https://cdn.krish.pics/cdn/12lpaclub-offer',
       },
     ],
   },
@@ -66,7 +66,7 @@ export const experiences: readonly Experience[] = [
       {
         type: 'file',
         text: 'Letter of Recommendation from Founder, Matt Van Italie',
-        src: 'https://krish.pics/cdn/sema-lor',
+        src: 'https://cdn.krish.pics/cdn/sema-lor',
       },
     ],
   },

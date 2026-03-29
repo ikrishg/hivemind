@@ -1,7 +1,7 @@
 import { MiscCategory, type MiscExperience } from './experience';
 import { sortByDate } from './util';
 
-const cdn = (id: string) => `https://krish.pics/cdn/${id}`;
+const cdn = (id: string) => `https://cdn.krish.pics/${id}`;
 
 const volunteering: MiscExperience[] = [
   {
@@ -48,7 +48,7 @@ const volunteering: MiscExperience[] = [
 • Investigated and explored 12+ Event Management platforms
 • Coordinated events with 60+ community partners, and advised them on event organisation.`,
     media: [
-      { type: 'image', src: cdn('gssoc-lor') },
+      { type: 'file', text: 'LOR', src: cdn('gssoc-lor') },
       {
         type: 'file',
         text: 'Offer Letter',
