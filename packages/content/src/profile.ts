@@ -10,7 +10,7 @@ export const links = {
   email: 'krish@krishg.com',
   github: 'https://github.com/kkrishguptaa',
   linkedin: 'https://linkedin.com/in/kkrishguptaa',
-  twitter: 'https://x.com/krishstrucktech',
+  twitter: 'https://x.com/kkrishguptaa',
   blog: 'https://blog.krishg.com',
   // resume: 'https://resume.krishg.com',
 } as const;

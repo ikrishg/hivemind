@@ -237,7 +237,7 @@ const extracurriculars: MiscExperience[] = [
 • Hosted 400 attendees with 13 committees.
 • Designed all branding, marketing, and promotional content of PRUMUN League`,
     media: [
-      { type: 'video', src: cdn('prumun-24-speech-video') },
+      // { type: 'video', src: cdn('prumun-24-speech-video') },
       { type: 'image', src: cdn('prumun24-afterphoto') },
       { type: 'image', src: cdn('prumun24-memento') },
       { type: 'image', src: cdn('prumun24-sec') },
@@ -261,8 +261,8 @@ const extracurriculars: MiscExperience[] = [
 • Facilitated 12 teams of students to various technical fests and competitions.
 • Taught 50+ members of the club in coding and design workshops.`,
     media: [
-      { type: 'video', src: cdn('technovanza-video-1') },
-      { type: 'video', src: cdn('technovanza-video-2') },
+      // { type: 'video', src: cdn('technovanza-video-1') },
+      // { type: 'video', src: cdn('technovanza-video-2') },
       { type: 'image', src: cdn('technovanza1') },
       { type: 'image', src: cdn('technovanza2') },
       { type: 'image', src: cdn('technovanza3') },
