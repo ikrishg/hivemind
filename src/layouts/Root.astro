@@ -1,0 +1,32 @@
+---
+import "lenis/dist/lenis.css";
+import "~styles/global.css";
+// import Header from "~components/Header.astro";
+import Head, { type HeadProps } from "~layouts/Head.astro";
+
+export interface Props {
+  pathname: string;
+  head?: Partial<HeadProps>;
+}
+
+const { head } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head {...head} />
+  <body>
+    <!-- <Header pathname={pathname} /> -->
+    <slot />
+  </body><script>
+    import Lenis from "lenis";
+
+    const lenis = new Lenis({
+      autoRaf: false,
+      anchors: true,
+      overscroll: false,
+    });
+
+    window.Lenis = lenis;
+  </script>
+</html>

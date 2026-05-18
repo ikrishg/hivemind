@@ -1,22 +1,40 @@
 {
-  "name": "hivemind",
+  "name": "",
   "version": "0.0.1",
-  "private": true,
-  "packageManager": "pnpm@9.0.6",
+  "type": "module",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "typecheck": "turbo typecheck",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "fmt": "biome format --write .",
+    "fmt:check": "biome format --check ."
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.5.1",
+    "@astrojs/compiler-rs": "^0.2.0",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.3",
+    "feather-icons": "^4.29.2",
+    "framer-motion": "^12.38.0",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.23",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "@workspace/typescript-config": "workspace:*",
-    "turbo": "2.8.20",
-    "typescript": "5.9.3",
-    "vitest": "4.1.0"
+    "@biomejs/biome": "2.4.15",
+    "@types/feather-icons": "^4.29.4",
+    "wrangler": "^4.92.0"
+  },
+  "overrides": {
+    "vite": "^7"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   }
 }

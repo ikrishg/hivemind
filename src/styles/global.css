@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --default-font-family: var(--font-zodiak), var(--font-serif), sans-serif;
+
+  --color-background: #faf6ef;
+  --color-foreground: #4e4b46;
+  --color-link-hover: #eee8dd;
+}
+
+@layer base {
+  html {
+    @apply bg-background text-foreground;
+    @apply antialiased;
+  }
+}
+
+@layer utilities {
+  .h-screen {
+    height: 100vh;
+    /* biome-ignore lint/suspicious/noDuplicateProperties: CSS waterfall */
+    height: 100svh;
+    height: 100dvh;
+  }
+
+  .min-h-screen {
+    min-height: 100vh;
+    /* biome-ignore lint/suspicious/noDuplicateProperties: CSS waterfall */
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+
+  .w-screen {
+    width: 100vw;
+    /* biome-ignore lint/suspicious/noDuplicateProperties: CSS waterfall */
+    width: 100svw;
+    width: 100dvw;
+  }
+
+  .image-squircle {
+    border-radius: 28%;
+  }
+
+  @supports (corner-shape: squircle) {
+    .image-squircle {
+      border-radius: 38%;
+      corner-shape: squircle;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+---
+
+export interface Props {
+  pathname: string;
+}
+
+import { icons } from "feather-icons";
+import { navigation } from "~shared";
+
+const { pathname } = Astro.props;
+
+function isActive(href: string, external?: boolean) {
+  if (external) return false;
+  const path = new URL(href, Astro.site ?? Astro.url).pathname;
+  return pathname === path || pathname.startsWith(`${path}/`);
+}
+---
+
+<header
+  class:list={[
+    "fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 transform z-50",
+    "flex items-center justify-center",
+    "rounded-full border border-foreground/10 bg-link-hover/90 backdrop-blur-3xl shadow-foreground",
+    "max-w-lg gap-0.5 sm:gap-1 px-2 py-1.5",
+  ]}
+>
+  <a
+    href="/"
+    aria-label="Home"
+    class:list={[
+      "flex shrink-0 items-center justify-center rounded-full p-1.5 transition-colors hover:bg-foreground/5",
+      pathname === "/"
+        ? "bg-foreground/5 text-foreground hover:text-black"
+        : "text-foreground hover:text-black",
+    ]}
+  >
+    <span
+      class="block [&>svg]:block"
+      set:html={icons.home.toSvg({
+        width: 18,
+        height: 18,
+        "stroke-width": 1.75,
+      })}
+    />
+  </a>
+
+  <span class="mx-0.5 h-3.5 w-px shrink-0 bg-foreground/15" aria-hidden="true"
+  ></span>
+
+  <nav class="flex items-center justify-evenly grow gap-0.5 sm:gap-1">
+    {
+      navigation.map((item) => {
+        const active = isActive(item.href, item.external);
+        return (
+          <a
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
+            aria-current={active ? "page" : undefined}
+            class:list={[
+              "relative shrink-0 rounded-full px-2 py-1 text-sm whitespace-nowrap hover:bg-foreground/5 sm:px-2.5",
+              active
+                ? "bg-foreground text-foreground underline decoration-foreground/35 underline-offset-[0.2em]"
+                : "text-foreground hover:text-foreground",
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })
+    }
+  </nav>
+</header>

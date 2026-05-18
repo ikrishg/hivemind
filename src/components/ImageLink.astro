@@ -1,0 +1,51 @@
+---
+
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export interface Props {
+  text: string;
+  link: string;
+  image: ImageMetadata;
+}
+
+const { text, link, image } = Astro.props;
+
+const external = Astro.site
+  ? new URL(link).hostname !== Astro.site.hostname
+  : true;
+
+const previewSize = 128;
+---
+
+<span class="group relative z-0 inline hover:z-30">
+  <!-- biome-ignore lint/a11y/useAnchorContent: Using set:text for text content -->
+  <a
+    href={link}
+    target={external ? "_blank" : undefined}
+    rel={external ? "noopener noreferrer" : undefined}
+    class:list={[
+      "underline underline-offset-4 decoration-foreground/60 decoration-2",
+      "transition-colors duration-150 ease-linear hover:bg-link-hover hover:text-black",
+      "px-1 py-0.5 rounded-sm",
+    ]}
+    set:text={text.trim()}
+  />
+  <Image
+    src={image}
+    alt=""
+    id="image"
+    class="image-squircle"
+    width={previewSize}
+    height={previewSize}
+    layout="full-width"
+    class:list={[
+      "h-12 w-12 object-cover aspect-square max-w-none",
+      "absolute top-8 left-1/2 -translate-x-1/2",
+      "opacity-0 scale-0 transform transition group-hover:opacity-100 group-hover:scale-100",
+      "border border-foreground/20",
+    ]}
+    loading="lazy"
+    decoding="async"
+  />
+</span>
