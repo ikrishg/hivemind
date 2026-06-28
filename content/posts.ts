@@ -1,6 +1,8 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
+import type { MDXContent } from "mdx/types";
+import {
+  postEntries,
+  type PostMdxMetadata,
+} from "@/content/posts/registry";
 
 export interface PostMeta {
   slug: string;
@@ -19,52 +21,43 @@ export interface PostListItem extends PostMeta {
 }
 
 export interface Post extends PostListItem {
-  body: string;
+  Component: MDXContent;
 }
 
-const POSTS_DIR = path.join(process.cwd(), "content", "posts");
-
-function readingTimeFromBody(body: string): number {
-  const words = body.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 200));
-}
-
-// YAML parses unquoted dates (e.g. `2024-01-31`) into Date objects.
 function toISODate(value: unknown): string {
   if (value instanceof Date) return value.toISOString();
   return String(value ?? "");
 }
 
-function parseFile(slug: string): Post {
-  const raw = fs.readFileSync(path.join(POSTS_DIR, `${slug}.md`), "utf8");
-  const { data, content } = matter(raw);
-
+function normalizeMeta(
+  slug: string,
+  metadata: PostMdxMetadata,
+  readingTime: number,
+  Component: MDXContent,
+): Post {
   return {
     slug,
-    title: String(data.title ?? slug),
-    description: String(data.description ?? ""),
-    date: toISODate(data.date),
-    cover: data.cover ? String(data.cover) : undefined,
-    coverAlt: data.coverAlt ? String(data.coverAlt) : undefined,
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : undefined,
-    featured: Boolean(data.featured),
-    draft: Boolean(data.draft),
-    readingTime: readingTimeFromBody(content),
-    body: content,
+    title: String(metadata.title ?? slug),
+    description: String(metadata.description ?? ""),
+    date: toISODate(metadata.date),
+    cover: metadata.cover ? String(metadata.cover) : undefined,
+    coverAlt: metadata.coverAlt ? String(metadata.coverAlt) : undefined,
+    tags: Array.isArray(metadata.tags) ? metadata.tags.map(String) : undefined,
+    featured: Boolean(metadata.featured),
+    draft: Boolean(metadata.draft),
+    readingTime,
+    Component,
   };
 }
 
-function allSlugs(): string[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.replace(/\.md$/, ""));
+function allPosts(): Post[] {
+  return postEntries.map(({ slug, metadata, readingTime, Component }) =>
+    normalizeMeta(slug, metadata, readingTime, Component),
+  );
 }
 
 export function getAllPosts(): PostListItem[] {
-  return allSlugs()
-    .map(parseFile)
+  return allPosts()
     .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .map(
@@ -83,13 +76,16 @@ export function getAllPosts(): PostListItem[] {
 }
 
 export function getPostBySlug(slug: string): Post | null {
-  if (!allSlugs().includes(slug)) return null;
-  try {
-    const post = parseFile(slug);
-    return post.draft ? null : post;
-  } catch {
-    return null;
-  }
+  const entry = postEntries.find((post) => post.slug === slug);
+  if (!entry) return null;
+
+  const post = normalizeMeta(
+    entry.slug,
+    entry.metadata,
+    entry.readingTime,
+    entry.Component,
+  );
+  return post.draft ? null : post;
 }
 
 export function formatDate(iso: string): string {

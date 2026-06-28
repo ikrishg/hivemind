@@ -1,12 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import { imageSize } from "image-size";
-import ReactMarkdown, { type Components } from "react-markdown";
-import remarkGfm from "remark-gfm";
 
-// Read intrinsic dimensions of a local (/public) image at build time so
-// next/image reserves the right aspect ratio and avoids layout shift.
 function localImageDims(src: string): { width: number; height: number } {
   if (src.startsWith("/")) {
     try {
@@ -20,7 +17,7 @@ function localImageDims(src: string): { width: number; height: number } {
   return { width: 1600, height: 900 };
 }
 
-const components: Components = {
+const components: MDXComponents = {
   h2: ({ children }) => (
     <h2 className="mt-12 mb-2 font-serif text-2xl tracking-tight sm:text-3xl">
       {children}
@@ -103,12 +100,6 @@ const components: Components = {
   },
 };
 
-export function Markdown({ children }: { children: string }) {
-  return (
-    <div className="text-[1.05rem]">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-        {children}
-      </ReactMarkdown>
-    </div>
-  );
+export function useMDXComponents(): MDXComponents {
+  return components;
 }
