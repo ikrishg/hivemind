@@ -6,6 +6,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { Lexend, Bodoni_Moda, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import site from "./site";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 
 const lexend = Lexend({
@@ -16,6 +17,7 @@ const lexend = Lexend({
 const bodoni_moda = Bodoni_Moda({
   variable: "--font-bodoni-moda",
   subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
 const jetbrains_mono = JetBrains_Mono({
@@ -24,6 +26,7 @@ const jetbrains_mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://krishg.com"),
   title: site.name,
   description: site.description,
 };
@@ -42,10 +45,10 @@ const { isEnabled: isDraftMode } = await draftMode()
       className={` ${lexend.variable} ${bodoni_moda.variable} ${jetbrains_mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          {children}
+        <SmoothScroll>{children}</SmoothScroll>
+        <ReactTempus patch={!isDraftMode} />
+        <GoogleAnalytics gaId="G-XHHNV9QKWL" />
       </body>
-      <ReactTempus patch={!isDraftMode} />
-      <GoogleAnalytics gaId="G-XHHNV9QKWL" />
     </html>
   );
 }
