@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate, getAllPosts, getPostBySlug } from "@/content/posts";
-import { Markdown } from "@/components/markdown";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -71,8 +70,8 @@ export default async function PostPage({
             </p>
           </header>
 
-          <div className="mt-12">
-            <Markdown>{post.body}</Markdown>
+          <div className="mt-12 text-[1.05rem]">
+            <post.Component />
           </div>
 
           <div className="mt-16 border-t border-foreground/12 pt-8">

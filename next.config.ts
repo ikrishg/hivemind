@@ -1,8 +1,18 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  // Post images are served locally from /public/blog, so no remote
-  // patterns are required for next/image.
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [
+      "remark-gfm",
+      "remark-frontmatter",
+      ["remark-mdx-frontmatter", { name: "metadata" }],
+    ],
+  },
+});
+
+export default withMDX(nextConfig);
