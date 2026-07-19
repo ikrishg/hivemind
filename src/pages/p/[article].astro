@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import RootLayout from "~layouts/RootLayout.astro";
 import { formatDate } from "~lib/utils";
@@ -37,6 +38,7 @@ const { Content } = await render(article);
       "my-8",
       "prose sm:prose-lg",
       "prose-headings:font-semibold",
+      "prose-img:rounded",
       "mx-auto px-8",
       "prose-a:underline prose-a:underline-offset-8",
       "wrap-break-word",
@@ -52,6 +54,13 @@ const { Content } = await render(article);
         }
       </span>
     </div>
+    <Image
+      src={article.data.cover}
+      alt={article.data.title}
+      width={1000}
+      height={525}
+      class="rounded-lg"
+    />
     <h1>{article.data.title}</h1>
     <Content />
   </article>
