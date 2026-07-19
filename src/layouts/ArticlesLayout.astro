@@ -64,16 +64,16 @@ const totalPages = pages.length;
       <span class="sr-only">Krish Gupta's </span>Articles
     </h1>
 
-    <div class="mt-8 mb-16 flex flex-wrap items-stretch justify-start">
+    <div class="mt-8 mb-16 flex flex-wrap items-stretch justify-start gap-16">
       {
         pageArticles.map((article, index) => (
-          <article class="flex max-w-sm grow flex-col gap-2 border border-black/10 p-4">
+          <article class="flex max-w-sm grow flex-col gap-2">
             <Image
               src={article.cover}
               densities={[0.5, 1, 2]}
               alt={article.title}
               width={350}
-              class="mb-2"
+              class="mb-2 rounded"
               loading={index <= PRIORITY_IMAGES ? "eager" : "lazy"}
               fetchpriority={index <= PRIORITY_IMAGES ? "high" : "low"}
             />

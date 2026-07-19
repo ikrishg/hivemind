@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #faf6ef;
+  --background: #E9DDCA;
   --foreground: #4e4b46;
 }
 
@@ -11,7 +11,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lexend);
   --font-serif: var(--font-bodoni-moda);
-  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
