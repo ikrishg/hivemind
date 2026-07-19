@@ -19,8 +19,8 @@ const socialLinks = [
 
 <footer class="border-t border-foreground/10">
   <div class="mx-8 py-4 space-y-8">
-    <div class="flex items-end justify-between gap-16">
-      <div class="flex flex-col h-full items-start justify-start gap-4">
+    <div class="flex md:flex-row flex-col items-stretch justify-between gap-16">
+      <div class="flex flex-col grow h-full items-start justify-start gap-4">
         <a class="text-2xl font-serif font-bold" href={new URL("/", site)}>
           {title}
         </a>
@@ -45,7 +45,7 @@ const socialLinks = [
           &copy; {new Date().getFullYear()} Krish Gupta. All rights reserved.
         </p>
       </div>
-      <ul class="flex items-center gap-16 text-right">
+      <ul class="flex flex-wrap justify-end items-center gap-16 text-right">
         {
           navigations.map((navigation) => (
             <li>
