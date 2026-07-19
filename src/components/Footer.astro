@@ -1,0 +1,70 @@
+---
+import { navigations, site, title, socials } from "~shared";
+import TwitterIcon from "./icons/TwitterIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import SubstackIcon from "./icons/SubstackIcon.astro";
+import GitHubIcon from "./icons/GitHubIcon.astro";
+import EmailIcon from "./icons/EmailIcon.astro";
+
+const socialLinks = [
+  { icon: TwitterIcon, href: socials.x, label: "X" },
+  { icon: InstagramIcon, href: socials.instagram, label: "Instagram" },
+  { icon: LinkedInIcon, href: socials.linkedin, label: "LinkedIn" },
+  { icon: SubstackIcon, href: socials.substack, label: "Substack" },
+  { icon: GitHubIcon, href: socials.github, label: "GitHub" },
+  { icon: EmailIcon, href: socials.email, label: "Email" },
+] as const;
+---
+
+<footer class="border-t border-foreground/10">
+  <div class="mx-8 py-4 space-y-8">
+    <div class="flex items-end justify-between gap-16">
+      <div class="flex flex-col h-full items-start justify-start gap-4">
+        <a class="text-2xl font-serif font-bold" href={new URL("/", site)}>
+          {title}
+        </a>
+        <ul class="flex items-center gap-4">
+          {
+            socialLinks.map((social) => (
+              <li>
+                <a
+                  class="hover:text-black transition-colors duration-300"
+                  aria-label={social.label}
+                  href={social.href}
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  <social.icon class="size-4" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Krish Gupta. All rights reserved.
+        </p>
+      </div>
+      <ul class="flex items-center gap-16 text-right">
+        {
+          navigations.map((navigation) => (
+            <li>
+              <ul class="flex flex-col gap-2">
+                {navigation.items.map((item) => (
+                  <li>
+                    <a
+                      class="hover:underline underline-offset-4"
+                      href={new URL(item.href, site)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

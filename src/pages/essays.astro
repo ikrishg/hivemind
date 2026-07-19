@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+import RootLayout from "~layouts/RootLayout.astro";
+import { formatDate } from "~lib/utils";
+import { site } from "~shared";
+
+const data = [
+  ...(
+    await getCollection("essays", ({ data }) => !data.draft).catch(() => [])
+  ).map((essay) => {
+    return {
+      ...essay,
+      data: {
+        ...essay.data,
+        url: new URL(`/p/${essay.id}`, site),
+        external: false,
+      },
+    };
+  }),
+  ...(await getCollection("externalEssays").catch(() => [])).map((essay) => {
+    return {
+      ...essay,
+      data: {
+        ...essay.data,
+        external: true,
+      },
+    };
+  }),
+].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const years = Array.from(
+  new Set(data.map((essay) => essay.data.date.getFullYear())),
+)
+  .sort((a, b) => b - a)
+  .map((year) => {
+    return {
+      year,
+      essays: data.filter((essay) => essay.data.date.getFullYear() === year),
+    };
+  });
+---
+
+<RootLayout
+  head={{
+    title: "Essays | Krish Gupta",
+    description: "Essays by Krish Gupta",
+  }}
+  class:list="mx-8 flex flex-1 h-max flex-col justify-center py-40"
+>
+  <h1 class="lg:text-8xl text-6xl mb-12 font-serif font-bold">Essays</h1>
+  <ul class="text-lg space-y-4">
+    {
+      years.map((year) => (
+        <li>
+          <h2 class="text-2xl mb-6 font-serif">{year.year}</h2>
+          <ul class="text-lg space-y-4">
+            {year.essays.map((essay) => (
+              <li>
+                <a
+                  href={essay.data.url}
+                  class="group flex items-center justify-between gap-2"
+                  rel={essay.data.external ? "noopener noreferrer" : undefined}
+                  target={essay.data.external ? "_blank" : undefined}
+                >
+                  <span class="group-hover:underline underline-offset-4">
+                    {essay.data.title}
+                  </span>{" "}
+                  {essay.data.external ? "↗" : ""}
+                  <span class="text-sm text-gray-500">
+                    {formatDate(essay.data.date, {
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</RootLayout>

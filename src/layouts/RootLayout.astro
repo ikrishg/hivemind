@@ -1,0 +1,26 @@
+---
+import "~styles/global.css";
+import Head, { type HeadProps } from "~components/Head.astro";
+import Header from "~components/Header.astro";
+import Footer from "~components/Footer.astro";
+
+export interface Props {
+  head?: Partial<HeadProps>;
+  hideTemplate?: boolean;
+  class?: string;
+}
+
+const { head, hideTemplate, class: className } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="antialiased font-body">
+  <Head {...head} />
+  <body class="flex min-h-screen flex-col">
+    {!hideTemplate && <Header />}
+    <main class:list={["flex-1", className]}>
+      <slot />
+    </main>
+    {!hideTemplate && <Footer />}
+  </body>
+</html>
