@@ -4,11 +4,12 @@ import RootLayout from "~layouts/RootLayout.astro";
 import WorkTile from "~components/WorkTile.astro";
 import { SiteContent } from "~lib/SiteContent";
 import portrait from "~assets/krish-portrait.jpg";
-import opensourceBigContributions from "~assets/opensource-big-contributions.webp";
-import { description, title } from "~shared";
+import mergePrGithub from "~assets/merge-pr-github.webp";
+import { description, socials, title } from "~shared";
 
 const work = SiteContent.getHomeWork();
 const reseter = work[0];
+const contact = SiteContent.getContact();
 ---
 
 <RootLayout head={{ title, description }}>
@@ -29,7 +30,7 @@ const reseter = work[0];
         >
           <div class="aspect-[5/4] overflow-hidden bg-rule lg:aspect-[4/3]">
             <Image
-              src={opensourceBigContributions}
+              src={mergePrGithub}
               alt=""
               width={800}
               height={640}
@@ -94,6 +95,35 @@ const reseter = work[0];
           ))
         }
       </ul>
+    </section>
+
+    <hr class="site-rule mt-20 lg:mt-28" />
+
+    <section class="mt-16 lg:mt-20 max-w-2xl space-y-4" aria-labelledby="contact-heading">
+      <p class="micro-label">Contact</p>
+      <h2 id="contact-heading" class="display-serif text-3xl md:text-4xl">
+        {contact.heading}
+      </h2>
+      <p class="text-lg leading-relaxed text-ink-muted">
+        {contact.body}
+      </p>
+      <p>
+        <a
+          href={contact.href}
+          class="font-serif text-xl font-semibold tracking-tight underline underline-offset-4 slow-hover hover:opacity-70"
+        >
+          {contact.email}
+        </a>
+        <span class="mx-3 text-ink-faint" aria-hidden="true">·</span>
+        <a
+          href={socials.linkedin}
+          class="text-sm underline underline-offset-4 text-ink-muted slow-hover hover:text-ink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+      </p>
     </section>
   </div>
 </RootLayout>
