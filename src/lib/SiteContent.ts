@@ -1,9 +1,7 @@
 import type { ImageMetadata } from "astro";
-import opensourceBigContributions from "~assets/opensource-big-contributions.webp";
-import letsDoThis from "~assets/lets-do-this.webp";
-import noCodeContribution from "~assets/no-code-contribution.webp";
+import mergePrGithub from "~assets/merge-pr-github.webp";
 import devopsProcess from "~assets/devops-process.webp";
-import opensourceAttraction from "~assets/opensource-attraction.webp";
+import opensourceSkills from "~assets/opensource-skills.webp";
 import profileWithReadme from "~assets/profile-with-readme.webp";
 import coffee from "~assets/coffee.webp";
 import { description, socials, title } from "~shared";
@@ -92,7 +90,7 @@ export class SiteContent {
         outcome: `${SiteContent.reseterStars.toLocaleString()} GitHub stars · ${SiteContent.reseterCdnPerYear} jsDelivr requests/year`,
         metric: `${SiteContent.reseterStars.toLocaleString()} GitHub stars`,
         href: "https://github.com/ikrishg/reseter.css",
-        image: opensourceBigContributions,
+        image: mergePrGithub,
         context: "Open source",
         role: "Creator",
         accent: "cobalt",
@@ -105,7 +103,6 @@ export class SiteContent {
         outcome: "TypeScript Discord bot with in-server economy flows",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/bot-dc-htm",
-        image: letsDoThis,
         context: "Hackathon tooling",
         role: "Builder",
         accent: "coral",
@@ -118,7 +115,6 @@ export class SiteContent {
         outcome: "fastn and FTD starter with GitHub Pages deployment",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/fastn-workshop",
-        image: noCodeContribution,
         context: "EduHub Roadshow Jaipur",
         role: "Workshop lead",
         accent: "sky",
@@ -148,7 +144,7 @@ export class SiteContent {
         outcome: "12 global ambassadors · 1,000+ reviewers",
         metric: "12 global ambassadors",
         href: "https://www.semasoftware.com/",
-        image: opensourceAttraction,
+        image: opensourceSkills,
         context: "Code-review education",
         role: "DevRel",
         accent: "cobalt",
@@ -207,6 +203,16 @@ export class SiteContent {
         text: "Studying CS and statistics at Christ University, Bengaluru. Building agentic AI and developer tooling.",
       },
     ];
+  }
+
+  static getContact() {
+    return {
+      heading: "Say hello",
+      body:
+        "For collaborations, speaking, or fractional DevRel — reach out directly.",
+      email: "send@krishg.com",
+      href: "mailto:send@krishg.com",
+    };
   }
 
   static getPersonSchema(siteUrl: string) {
