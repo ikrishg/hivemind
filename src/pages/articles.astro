@@ -1,0 +1,19 @@
+---
+import RootLayout from "~layouts/RootLayout.astro";
+import YearGroupedWritingList from "~components/YearGroupedWritingList.astro";
+import { WritingCatalog } from "~lib/WritingCatalog";
+
+const pieces = await WritingCatalog.loadByKind("article");
+const years = WritingCatalog.groupByYear(pieces);
+---
+
+<RootLayout
+  head={{
+    title: "Articles | Krish Gupta",
+    description: "Articles by Krish Gupta on DevOps, open source, and engineering.",
+  }}
+  class:list="mx-8 flex flex-1 h-max flex-col justify-center py-40"
+>
+  <h1 class="mb-12 font-serif text-6xl font-bold lg:text-8xl">Articles</h1>
+  <YearGroupedWritingList years={years} />
+</RootLayout>

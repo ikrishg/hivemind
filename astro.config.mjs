@@ -56,8 +56,6 @@ export default defineConfig({
 
   redirects: {
     "/bio": "/about",
-    "/articles": "/writing",
-    "/essays": "/writing",
     "/timeline": "/about",
     "/coverage": "/",
     "/papers": "/",
