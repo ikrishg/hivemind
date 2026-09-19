@@ -24,7 +24,7 @@ function parseFetch(text) {
   const dateMatch = text.match(/"date:Written:start":"([^"]+)"/);
   const contentMatch = text.match(/<content>\n([\s\S]*?)\n<\/content>/);
   if (!titleMatch || !dateMatch || !contentMatch) {
-    throw new Error(`Failed to parse poem from fetch text`);
+    throw new Error("Failed to parse poem from fetch text");
   }
   const body = contentMatch[1]
     .replace(/<empty-block\/>/g, "")
@@ -37,6 +37,22 @@ function parseFetch(text) {
   return { title, written: dateMatch[1], content: body, excerpt };
 }
 
+function uniqueSlug(baseSlug, slugs) {
+  if (!slugs.has(baseSlug)) {
+    slugs.add(baseSlug);
+    return baseSlug;
+  }
+
+  let counter = 2;
+  let candidate = `${baseSlug}-${counter}`;
+  while (slugs.has(candidate)) {
+    counter += 1;
+    candidate = `${baseSlug}-${counter}`;
+  }
+  slugs.add(candidate);
+  return candidate;
+}
+
 const input = JSON.parse(
   await new Promise((resolve, reject) => {
     let data = "";
@@ -47,18 +63,26 @@ const input = JSON.parse(
   }),
 );
 
-mkdirSync(outDir, { recursive: true });
+if (!Array.isArray(input)) {
+  throw new Error('Expected JSON array of { "text": "..." } records');
+}
+
+const poems = input.map((entry, index) => {
+  if (entry === null || typeof entry !== "object") {
+    throw new Error(`Entry ${index}: expected an object`);
+  }
+  if (typeof entry.text !== "string") {
+    throw new Error(`Entry ${index}: missing string "text" field`);
+  }
+  return parseFetch(entry.text);
+});
+
 const slugs = new Set();
-
-for (const entry of input) {
-  const poem = parseFetch(entry.text);
-  let slug = slugify(poem.title);
-  if (slugs.has(slug)) slug = `${slug}-${poem.written}`;
-  slugs.add(slug);
-
+const files = poems.map((poem) => {
+  const slug = uniqueSlug(slugify(poem.title), slugs);
   const md = `---
-title: "${poem.title.replace(/"/g, '\\"')}"
-description: "${poem.excerpt.replace(/"/g, '\\"')}"
+title: ${JSON.stringify(poem.title)}
+description: ${JSON.stringify(poem.excerpt)}
 date: ${poem.written}
 tags:
   - poem
@@ -67,8 +91,14 @@ cover: ~assets/poems.webp
 
 ${poem.content}
 `;
+  return { slug, md };
+});
+
+mkdirSync(outDir, { recursive: true });
+
+for (const { slug, md } of files) {
   writeFileSync(join(outDir, `${slug}.md`), md);
   console.log(`wrote ${slug}.md`);
 }
 
-console.log(`Imported ${input.length} poems.`);
+console.log(`Imported ${files.length} poems.`);
