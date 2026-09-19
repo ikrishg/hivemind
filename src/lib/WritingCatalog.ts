@@ -119,4 +119,15 @@ export class WritingCatalog {
       pieces: pieces.filter((piece) => piece.date.getFullYear() === year),
     }));
   }
+
+  /** Topic tags only — excludes the piece kind so it is not duplicated beside the kind chip. */
+  static displayTags(piece: WritingPiece): string[] {
+    return piece.tags.filter((tag) => tag !== piece.kind);
+  }
+
+  /** Subtle paper tint for typographic poem cards — variety from index, not shared imagery. */
+  static poemSheetTint(index: number): string {
+    const tints = ["#c9b8a4", "#b8c4b0", "#c4b8c9", "#c9c0b0", "#b0b8c4", "#c4b0b8"];
+    return tints[index % tints.length];
+  }
 }
