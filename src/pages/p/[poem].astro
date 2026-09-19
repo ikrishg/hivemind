@@ -33,39 +33,40 @@ const { Content } = await render(poem);
     canonical: poem.data.canonical,
   }}
   hideTemplate={true}
+  class="poems-charcoal"
 >
   <article
     class:list={[
       "my-8",
       "font-serif",
-      "prose prose-poem max-w-2xl",
-      "prose-headings:text-ink",
+      "prose prose-poem prose-poem-dark max-w-2xl",
+      "prose-headings:text-[var(--poem-ink)]",
       "prose-headings:font-semibold",
       "mx-auto px-[var(--gutter)]",
-      "leading-loose text-ink",
+      "leading-loose text-[var(--poem-ink)]",
     ]}
   >
     <header class="not-prose mb-4 text-sm">
       <nav>
-        <a href={new URL("/", site)} class="underline">home</a> /
-        <a href={new URL("/poems", site)} class="underline">poems</a> /
-        <span class="text-foreground/70">{poem.id}</span>
+        <a href={new URL("/", site)} class="underline underline-offset-4 slow-hover hover:opacity-70">home</a> /
+        <a href={new URL("/poems", site)} class="underline underline-offset-4 slow-hover hover:opacity-70">poems</a> /
+        <span class="text-[var(--poem-ink-muted)]">{poem.id}</span>
       </nav>
     </header>
-    <div class="mb-4 text-sm text-foreground/70">
+    <div class="mb-4 text-sm text-[var(--poem-ink-muted)]">
       <time datetime={poem.data.date.toISOString()}>
         {formatDate(poem.data.date)}
       </time>
     </div>
-    <hr class="border-foreground/50 mt-0! mb-8!" />
+    <hr class="border-[var(--poem-rule)] mt-0! mb-8!" />
     <h1>{poem.data.title}</h1>
     <Content />
-    <hr class="border-foreground/50 my-8!" />
-    <footer class="text-sm font-semibold space-y-6">
+    <hr class="border-[var(--poem-rule)] my-8!" />
+    <footer class="not-prose text-sm font-semibold space-y-6">
       {
         poem.data.canonical && (
           <div>
-            <a href={poem.data.canonical} class="underline" target="_blank">
+            <a href={poem.data.canonical} class="underline underline-offset-4 slow-hover hover:opacity-70" target="_blank">
               originally published on {new URL(poem.data.canonical).hostname}
             </a>
           </div>
@@ -74,11 +75,11 @@ const { Content } = await render(poem);
       <div class="flex flex-wrap gap-2 items-center justify-between">
         <span>
           © {new Date().getFullYear()}{" "}
-          <a href={socials.x} class="underline" target="_blank">
+          <a href={socials.x} class="underline underline-offset-4 slow-hover hover:opacity-70" target="_blank">
             @{new URL(socials.x).pathname.replace("/", "")}
           </a>
         </span>
-        <a href={new URL("/poems", site)} class="underline">more poems</a>
+        <a href={new URL("/poems", site)} class="underline underline-offset-4 slow-hover hover:opacity-70">more poems</a>
       </div>
     </footer>
   </article>
