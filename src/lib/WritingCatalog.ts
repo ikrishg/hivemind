@@ -125,9 +125,9 @@ export class WritingCatalog {
     return piece.tags.filter((tag) => tag !== piece.kind);
   }
 
-  /** Subtle paper tint for typographic poem cards — variety from index, not shared imagery. */
-  static poemSheetTint(index: number): string {
-    const tints = ["#2f4acb", "#6eb5e8", "#b8a9d9", "#e8876f", "#2f4acb", "#b8a9d9"];
-    return tints[index % tints.length];
+  /** Subtle accent tint for charcoal poem cards — variety from index, not shared imagery. */
+  static poemCardAccent(index: number): string {
+    const accents = ["#6eb5e8", "#b8a9d9", "#2f4acb", "#8a9bb8", "#b8a9d9", "#6eb5e8"];
+    return accents[index % accents.length];
   }
 }

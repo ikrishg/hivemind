@@ -8,15 +8,16 @@ const poems = await WritingCatalog.loadByKind("poem");
 <RootLayout
   head={{
     title: "Poems | Krish Gupta",
-    description: "Poems by Krish Gupta — typographic sheets on paper.",
+    description: "Poems by Krish Gupta — typographic cards in charcoal and midnight.",
   }}
+  class="poems-charcoal"
 >
   <div class="site-shell">
     <header class="max-w-2xl space-y-4">
       <p class="micro-label">Poetry</p>
       <h1 class="display-serif text-5xl md:text-6xl">Poems</h1>
-      <p class="text-lg leading-relaxed text-ink-muted">
-        Small pieces on paper — wander through at your own pace.
+      <p class="text-lg leading-relaxed text-[var(--poem-ink-muted)]">
+        Small pieces set apart — wander through at your own pace.
       </p>
     </header>
 
@@ -35,15 +36,15 @@ const poems = await WritingCatalog.loadByKind("poem");
                 rel={poem.external ? "noopener noreferrer" : undefined}
               >
                 <div
-                  class="poem-sheet aspect-[4/3] flex flex-col justify-between p-6 lg:p-8"
-                  style={`--sheet-tint: ${WritingCatalog.poemSheetTint(index)}`}
+                  class="poem-card aspect-[4/3] flex flex-col justify-between p-6 lg:p-8"
+                  style={`--card-accent: ${WritingCatalog.poemCardAccent(index)}`}
                 >
-                  <h2 class="font-serif text-2xl font-semibold leading-snug tracking-tight">
+                  <h2 class="poem-card__title">
                     {poem.title}
                     {poem.external ? " ↗" : ""}
                   </h2>
                   {poem.description ? (
-                    <p class="text-sm leading-relaxed text-ink-muted italic line-clamp-4">
+                    <p class="poem-card__line line-clamp-4">
                       {poem.description}
                     </p>
                   ) : null}
@@ -58,28 +59,8 @@ const poems = await WritingCatalog.loadByKind("poem");
 </RootLayout>
 
 <style>
-  .poem-sheet {
-    border-top: 1px solid var(--rule);
-    background: linear-gradient(
-      165deg,
-      color-mix(in srgb, var(--sheet-tint) 12%, var(--paper)) 0%,
-      var(--paper) 55%,
-      color-mix(in srgb, var(--sheet-tint) 8%, var(--paper)) 100%
-    );
-    transition: background 0.6s ease;
-  }
-
-  .group:hover .poem-sheet {
-    background: linear-gradient(
-      165deg,
-      color-mix(in srgb, var(--sheet-tint) 18%, var(--paper)) 0%,
-      var(--paper) 50%,
-      color-mix(in srgb, var(--sheet-tint) 12%, var(--paper)) 100%
-    );
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .poem-sheet {
+    .poem-card {
       transition: none;
     }
   }
