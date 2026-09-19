@@ -1,7 +1,9 @@
 import type { ImageMetadata } from "astro";
-import mergePrGithub from "~assets/merge-pr-github.webp";
+import comparePullRequestButton from "~assets/compare-pull-request-button.webp";
+import createBranchOnGithub from "~assets/create-branch-on-github.webp";
 import devopsProcess from "~assets/devops-process.webp";
-import opensourceSkills from "~assets/opensource-skills.webp";
+import mergePrGithub from "~assets/merge-pr-github.webp";
+import noCodeContribution from "~assets/no-code-contribution.webp";
 import profileWithReadme from "~assets/profile-with-readme.webp";
 import coffee from "~assets/coffee.webp";
 import { description, socials, title } from "~shared";
@@ -11,7 +13,7 @@ export type WorkEntry = {
   summary: string;
   why: string;
   href: string;
-  image?: ImageMetadata;
+  image: ImageMetadata;
   year?: string;
   context?: string;
   role?: string;
@@ -103,6 +105,7 @@ export class SiteContent {
         outcome: "TypeScript Discord bot with in-server economy flows",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/bot-dc-htm",
+        image: createBranchOnGithub,
         context: "Hackathon tooling",
         role: "Builder",
         accent: "coral",
@@ -115,6 +118,7 @@ export class SiteContent {
         outcome: "fastn and FTD starter with GitHub Pages deployment",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/fastn-workshop",
+        image: noCodeContribution,
         context: "EduHub Roadshow Jaipur",
         role: "Workshop lead",
         accent: "sky",
@@ -144,7 +148,7 @@ export class SiteContent {
         outcome: "12 global ambassadors · 1,000+ reviewers",
         metric: "12 global ambassadors",
         href: "https://www.semasoftware.com/",
-        image: opensourceSkills,
+        image: comparePullRequestButton,
         context: "Code-review education",
         role: "DevRel",
         accent: "cobalt",
