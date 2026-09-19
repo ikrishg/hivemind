@@ -1,0 +1,46 @@
+---
+import { formatDate } from "~lib/utils";
+import type { WritingPiece } from "~lib/WritingCatalog";
+
+export interface Props {
+  years: { year: number; pieces: WritingPiece[] }[];
+}
+
+const { years } = Astro.props;
+---
+
+<ul class="text-lg space-y-14">
+  {
+    years.map(({ year, pieces }) => (
+      <li>
+        <h2 class="mb-6 font-serif text-2xl">{year}</h2>
+        <ul class="space-y-4">
+          {pieces.map((piece) => (
+            <li>
+              <a
+                href={piece.href}
+                class="group flex items-center justify-between gap-2"
+                rel={piece.external ? "noopener noreferrer" : undefined}
+                target={piece.external ? "_blank" : undefined}
+              >
+                <span class="group-hover:underline underline-offset-4">
+                  {piece.title}
+                </span>
+                {piece.external ? " ↗" : ""}
+                <time
+                  datetime={piece.date.toISOString()}
+                  class="shrink-0 text-sm text-foreground/60"
+                >
+                  {formatDate(piece.date, {
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))
+  }
+</ul>
