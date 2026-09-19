@@ -3,6 +3,7 @@ import { Font } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import DefaultOpenGraphImage from '~assets/og-image.webp';
 import * as shared from '~shared';
+import { SiteContent } from '~lib/SiteContent';
 
 type OpenGraphProtocol =
   | {
@@ -44,6 +45,7 @@ const props = Astro.props;
 
 const { title, description } = { ...defaultProps, ...props };
 const { type, image } = { ...defaultProps.ogp, ...props.ogp };
+const personSchema = SiteContent.getPersonSchema(siteUrl.href);
 ---
 
 <meta charset="utf-8" />
@@ -111,3 +113,5 @@ const { type, image } = { ...defaultProps.ogp, ...props.ogp };
 
 <Font cssVariable='--font-bodoni-moda' />
 <Font cssVariable='--font-lexend' />
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
