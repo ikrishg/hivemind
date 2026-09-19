@@ -55,6 +55,29 @@ export class SiteContent {
         href: "https://github.com/ikrishg/reseter.css",
       },
       {
+        name: "bot-dc-htm",
+        summary:
+          "Discord economy bot for one of India's largest hackathons.",
+        why:
+          "Built a TypeScript Discord bot with the Sapphire framework to manage in-server economy flows during the event.",
+        metric: "11 GitHub stars",
+        href: "https://github.com/ikrishg/bot-dc-htm",
+      },
+      {
+        name: "fastn workshop",
+        summary: "Hands-on workshop for learning fastn.",
+        why:
+          "Created for the EduHub Roadshow Jaipur — a simple fastn and FTD starter with GitHub Pages deployment.",
+        metric: "11 GitHub stars",
+        href: "https://github.com/ikrishg/fastn-workshop",
+      },
+    ];
+  }
+
+  static getWorkPage(): WorkEntry[] {
+    return [
+      ...SiteContent.getHomeWork(),
+      {
         name: "Sudan's Tech",
         summary: "Backend work for Jammu & Kashmir's first student-led tech nonprofit.",
         why: "Built APIs and deployment pipelines so the community could ship programs for underprivileged students.",
@@ -68,12 +91,6 @@ export class SiteContent {
         metric: "12 global ambassadors",
         href: "https://www.semasoftware.com/",
       },
-    ];
-  }
-
-  static getWorkPage(): WorkEntry[] {
-    return [
-      ...SiteContent.getHomeWork(),
       {
         name: "Playlistwise",
         summary: "Software engineering internship on a React and Next.js product team.",

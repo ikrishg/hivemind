@@ -7,11 +7,11 @@ export const site = new URL(base, astroSite) || new URL('https://krishg.com')
 export const author = "Krish Gupta";
 
 export const socials = {
-  x: "https://x.com/kkrishguptaa",
-  instagram: "https://instagram.com/kkrishguptaa",
+  x: "https://x.com/ikrishg",
+  instagram: "https://instagram.com/howimetkrish",
   linkedin: "https://linkedin.com/in/kkrishguptaa",
   substack: "https://koldovstvo.substack.com",
-  github: "https://github.com/kkrishguptaa",
+  github: "https://github.com/ikrishg",
   email: "mailto:send@krishg.com",
 } as const;
 
