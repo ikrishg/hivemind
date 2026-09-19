@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import RootLayout from "~layouts/RootLayout.astro";
 import { WritingCatalog } from "~lib/WritingCatalog";
 
@@ -35,31 +34,16 @@ const poems = await WritingCatalog.loadByKind("poem");
                 target={poem.external ? "_blank" : undefined}
                 rel={poem.external ? "noopener noreferrer" : undefined}
               >
-                {poem.cover ? (
-                  <div class="poems-gallery__frame overflow-hidden rounded-sm">
-                    <Image
-                      src={poem.cover}
-                      alt=""
-                      width={480}
-                      height={360}
-                      class="poems-gallery__image aspect-[4/3] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
-                      loading={index < 3 ? "eager" : "lazy"}
-                      fetchpriority={index < 3 ? "high" : "low"}
-                    />
-                  </div>
-                ) : (
-                  <div
-                    class="poems-gallery__frame poems-gallery__placeholder aspect-[4/3] rounded-sm"
-                    aria-hidden="true"
-                  />
-                )}
-                <div class="mt-4 space-y-2">
-                  <h2 class="font-serif text-2xl font-semibold leading-snug group-hover:underline underline-offset-4">
+                <div
+                  class="poems-gallery__sheet aspect-[4/3] flex flex-col justify-between rounded-sm p-6"
+                  style={`--sheet-tint: ${WritingCatalog.poemSheetTint(index)}`}
+                >
+                  <h2 class="font-serif text-2xl font-semibold leading-snug">
                     {poem.title}
                     {poem.external ? " ↗" : ""}
                   </h2>
                   {poem.description ? (
-                    <p class="text-sm leading-relaxed text-foreground/75 line-clamp-3">
+                    <p class="text-base leading-relaxed text-foreground/75 italic line-clamp-4">
                       {poem.description}
                     </p>
                   ) : null}
@@ -89,39 +73,31 @@ const poems = await WritingCatalog.loadByKind("poem");
     min-height: 100%;
   }
 
-  .poems-gallery__frame {
+  .poems-gallery__sheet {
     border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
-    background: color-mix(in srgb, var(--background) 60%, white);
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--sheet-tint) 18%, white) 0%,
+      color-mix(in srgb, var(--sheet-tint) 8%, #f8f4ec) 55%,
+      color-mix(in srgb, var(--sheet-tint) 14%, #efe6d8) 100%
+    );
     box-shadow:
       0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent),
       0 12px 32px color-mix(in srgb, var(--foreground) 8%, transparent);
-    transition: box-shadow 0.5s ease;
+    transition:
+      box-shadow 0.5s ease,
+      transform 0.5s ease;
   }
 
-  .poems-gallery__card:hover .poems-gallery__frame {
+  .poems-gallery__card:hover .poems-gallery__sheet {
     box-shadow:
       0 2px 4px color-mix(in srgb, var(--foreground) 8%, transparent),
       0 20px 48px color-mix(in srgb, var(--foreground) 14%, transparent);
-  }
-
-  .poems-gallery__placeholder {
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--foreground) 6%, var(--background)),
-      color-mix(in srgb, var(--foreground) 12%, var(--background))
-    );
-  }
-
-  .poems-gallery__image {
-    filter: saturate(0.92) contrast(0.98);
-  }
-
-  .poems-gallery__card:hover .poems-gallery__image {
-    filter: saturate(1) contrast(1);
+    transform: translateY(-2px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .poems-gallery__image {
+    .poems-gallery__sheet {
       transition: none;
     }
   }
