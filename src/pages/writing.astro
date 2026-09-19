@@ -71,7 +71,7 @@ const years = WritingCatalog.groupByYear(pieces);
                         {piece.kind}
                       </span>
                     </li>
-                    {piece.tags.map((tag) => (
+                    {WritingCatalog.displayTags(piece).map((tag) => (
                       <li>
                         <span class="rounded border border-foreground/10 px-2 py-1 text-xs text-foreground/70">
                           {tag}
