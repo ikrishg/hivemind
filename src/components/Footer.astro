@@ -54,7 +54,11 @@ const socialLinks = [
                   <li>
                     <a
                       class="hover:underline underline-offset-4"
-                      href={new URL(item.href, site)}
+                      href={
+                        item.href.startsWith("mailto:")
+                          ? item.href
+                          : new URL(item.href, site)
+                      }
                     >
                       {item.label}
                     </a>
