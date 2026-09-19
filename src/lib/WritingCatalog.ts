@@ -93,7 +93,7 @@ export class WritingCatalog {
 
   static async recent(limit: number): Promise<WritingPiece[]> {
     const pieces = await WritingCatalog.load();
-    return pieces.slice(0, limit);
+    return pieces.filter((piece) => piece.kind !== "poem").slice(0, limit);
   }
 
   static groupByYear(pieces: WritingPiece[]) {
