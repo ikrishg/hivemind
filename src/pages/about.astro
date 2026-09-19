@@ -5,6 +5,8 @@ import { SiteContent } from "~lib/SiteContent";
 import portrait from "~assets/krish-portrait.jpg";
 import { socials, title } from "~shared";
 
+const capabilities = SiteContent.getCapabilities();
+const roles = SiteContent.getAboutRoles();
 const timeline = SiteContent.getAboutTimeline();
 
 const socialLinks = [
@@ -24,45 +26,86 @@ const socialLinks = [
       "About Krish Gupta — engineer, builder, sidequester. Started coding at 10, shipped reseter.css at 12, DevRel and backend since.",
   }}
 >
-  <div class="mx-8 py-12 lg:py-20">
-    <div class="grid items-start gap-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
+  <div class="site-shell">
+    <div class="grid items-start gap-12 lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-20">
       <Image
         src={portrait}
         alt="Portrait of Krish Gupta"
-        width={160}
-        height={160}
-        class="rounded-full border border-foreground/10"
+        width={176}
+        height={220}
+        class="aspect-[4/5] w-full max-w-[11rem] object-cover"
       />
 
-      <div class="max-w-3xl space-y-6">
-        <h1 class="font-serif text-5xl font-bold md:text-6xl">About</h1>
+      <div class="max-w-2xl space-y-5">
+        <p class="micro-label">About</p>
+        <h1 class="display-serif text-5xl md:text-6xl">{title}</h1>
         <p class="text-lg leading-relaxed">
-          I'm {title}, {SiteContent.age}. Engineer, builder, sidequester — I
-          started coding around 10 to build WordPress plugins, shipped{" "}
+          I'm {SiteContent.age}, studying CS and statistics at Christ University
+          in Bengaluru. I started coding around 10 to build WordPress plugins,
+          shipped{" "}
           <a
             href="https://github.com/ikrishg/reseter.css"
-            class="underline underline-offset-4"
+            class="underline underline-offset-4 slow-hover hover:opacity-70"
             target="_blank"
             rel="noopener noreferrer"
           >
             reseter.css
           </a>{" "}
-          at 12, picked up DevRel young, and have been doing backend work since.
-          I'm studying CS and statistics at Christ University in Bengaluru while
-          building agentic AI and developer tooling.
+          at 12, picked up DevRel young, and have been doing backend work
+          since. Available in {SiteContent.timezone}.
         </p>
       </div>
     </div>
 
-    <section class="mt-16 max-w-3xl">
-      <h2 class="font-serif text-3xl font-bold">Timeline</h2>
-      <ol class="mt-8 space-y-8 border-l border-foreground/15 pl-6">
+    <hr class="site-rule mt-16 lg:mt-20" />
+
+    <section class="mt-16 grid gap-16 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <h2 class="micro-label">Capabilities</h2>
+        <ul class="mt-6 space-y-4">
+          {
+            capabilities.map((item) => (
+              <li class="flex gap-3 text-base leading-relaxed">
+                <span
+                  class="accent-dot accent-dot--sky mt-2 shrink-0"
+                  aria-hidden="true"
+                />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="micro-label">Roles</h2>
+        <ul class="mt-6 divide-y divide-rule">
+          {
+            roles.map((role) => (
+              <li class="py-5 first:pt-0 last:pb-0">
+                <p class="font-medium">
+                  {role.title}
+                  <span class="text-ink-muted"> · {role.org}</span>
+                </p>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                  {role.detail}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <hr class="site-rule mt-16 lg:mt-20" />
+
+    <section class="mt-16 max-w-2xl">
+      <h2 class="micro-label">Timeline</h2>
+      <ol class="mt-8 space-y-8">
         {
           timeline.map((entry) => (
-            <li class="relative">
-              <p class="text-sm font-medium uppercase tracking-wide text-foreground/60">
-                {entry.period}
-              </p>
+            <li class="border-t border-rule pt-6 first:border-t-0 first:pt-0">
+              <p class="micro-label">{entry.period}</p>
               <p class="mt-2 leading-relaxed">{entry.text}</p>
             </li>
           ))
@@ -70,15 +113,17 @@ const socialLinks = [
       </ol>
     </section>
 
-    <section class="mt-16 max-w-3xl">
-      <h2 class="font-serif text-3xl font-bold">Elsewhere</h2>
-      <ul class="mt-6 flex flex-wrap gap-4">
+    <hr class="site-rule mt-16 lg:mt-20" />
+
+    <section class="mt-12 max-w-2xl">
+      <h2 class="micro-label">Elsewhere</h2>
+      <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
         {
           socialLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="underline underline-offset-4"
+                class="text-sm underline underline-offset-4 slow-hover hover:opacity-70"
                 target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
               >

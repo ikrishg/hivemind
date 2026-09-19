@@ -1,7 +1,7 @@
 ---
 import RootLayout from "~layouts/RootLayout.astro";
+import WritingEntry from "~components/WritingEntry.astro";
 import { WritingCatalog } from "~lib/WritingCatalog";
-import { formatDate } from "~lib/utils";
 
 const pieces = await WritingCatalog.load();
 const years = WritingCatalog.groupByYear(pieces);
@@ -14,74 +14,41 @@ const years = WritingCatalog.groupByYear(pieces);
       "Articles, essays, and notes by Krish Gupta on DevOps, open source, philosophy, and building.",
   }}
 >
-  <div class="mx-8 py-12 lg:py-20">
-    <header class="max-w-3xl space-y-4">
-      <h1 class="font-serif text-5xl font-bold md:text-6xl">Writing</h1>
-      <p class="text-lg leading-relaxed text-foreground/90">
-        Articles, essays, and occasional poems — one place, tagged by topic.
+  <div class="site-shell site-shell--narrow">
+    <header class="space-y-4">
+      <p class="micro-label">Archive</p>
+      <h1 class="display-serif text-5xl md:text-6xl">Writing</h1>
+      <p class="text-lg leading-relaxed text-ink-muted">
+        Articles, essays, and poems — a quiet column.
       </p>
       <nav
-        class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-foreground/70"
+        class="flex flex-wrap gap-x-3 gap-y-1 text-sm text-ink-muted"
         aria-label="Writing by form"
       >
-        <a href="/articles" class="underline-offset-4 hover:underline">Articles</a>
-        <span aria-hidden="true">·</span>
-        <a href="/essays" class="underline-offset-4 hover:underline">Essays</a>
-        <span aria-hidden="true">·</span>
-        <a href="/poems" class="underline-offset-4 hover:underline">Poems</a>
+        <a href="/articles" class="underline-offset-4 slow-hover hover:underline">
+          Articles
+        </a>
+        <span aria-hidden="true" class="text-ink-faint">/</span>
+        <a href="/essays" class="underline-offset-4 slow-hover hover:underline">
+          Essays
+        </a>
+        <span aria-hidden="true" class="text-ink-faint">/</span>
+        <a href="/poems" class="underline-offset-4 slow-hover hover:underline">
+          Poems
+        </a>
       </nav>
     </header>
 
-    <div class="mt-16 max-w-3xl space-y-14">
+    <div class="mt-16 lg:mt-20">
       {
-        years.map(({ year, pieces: yearPieces }) => (
-          <section>
-            <h2 class="font-serif text-3xl font-bold">{year}</h2>
-            <ul class="mt-6 space-y-6">
+        years.map(({ year, pieces: yearPieces }, yearIndex) => (
+          <section class:list={[yearIndex > 0 && "mt-16"]}>
+            <h2 class="micro-label border-b border-rule pb-3">{year}</h2>
+            <div>
               {yearPieces.map((piece) => (
-                <li class="border-t border-foreground/10 pt-5">
-                  <a
-                    href={piece.href}
-                    class="group block"
-                    target={piece.external ? "_blank" : undefined}
-                    rel={piece.external ? "noopener noreferrer" : undefined}
-                  >
-                    <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 class="font-serif text-2xl font-semibold group-hover:underline underline-offset-4">
-                        {piece.title}
-                        {piece.external ? " ↗" : ""}
-                      </h3>
-                      <time
-                        datetime={piece.date.toISOString()}
-                        class="text-sm text-foreground/60"
-                      >
-                        {formatDate(piece.date, {
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </time>
-                    </div>
-                    <p class="mt-2 text-sm leading-relaxed text-foreground/80">
-                      {piece.description}
-                    </p>
-                  </a>
-                  <ul class="mt-3 flex flex-wrap gap-2">
-                    <li>
-                      <span class="rounded bg-foreground/8 px-2 py-1 text-xs uppercase tracking-wide">
-                        {piece.kind}
-                      </span>
-                    </li>
-                    {WritingCatalog.displayTags(piece).map((tag) => (
-                      <li>
-                        <span class="rounded border border-foreground/10 px-2 py-1 text-xs text-foreground/70">
-                          {tag}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
+                <WritingEntry piece={piece} />
               ))}
-            </ul>
+            </div>
           </section>
         ))
       }

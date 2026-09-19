@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import type { WorkEntry } from "~lib/SiteContent";
+import { SiteContent } from "~lib/SiteContent";
+
+export interface Props {
+  entry: WorkEntry;
+  priority?: boolean;
+}
+
+const { entry, priority = false } = Astro.props;
+const meta = SiteContent.formatWorkMeta(entry);
+const accentClass = entry.accent ? `accent-dot--${entry.accent}` : "accent-dot--cobalt";
+---
+
+<article class="group flex flex-col">
+  <a
+    href={entry.href}
+    class="block overflow-hidden"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {
+      entry.image ? (
+        <div class="aspect-[4/3] overflow-hidden bg-rule">
+          <Image
+            src={entry.image}
+            alt=""
+            width={640}
+            height={480}
+            class="h-full w-full object-cover slow-hover-image group-hover:opacity-92"
+            loading={priority ? "eager" : "lazy"}
+            fetchpriority={priority ? "high" : undefined}
+          />
+        </div>
+      ) : (
+        <div
+          class="aspect-[4/3] bg-rule"
+          aria-hidden="true"
+        />
+      )
+    }
+  </a>
+
+  <div class="caption-block mt-0 flex flex-1 flex-col">
+    <h3 class="caption-block__title">
+      <a
+        href={entry.href}
+        class="slow-hover hover:opacity-70"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class:list={["accent-dot", accentClass]} aria-hidden="true" />
+        {entry.name}
+      </a>
+    </h3>
+
+    {
+      meta && (
+        <p class="caption-block__meta">
+          {entry.year && <span>{entry.year}</span>}
+          {entry.context && <span>{entry.context}</span>}
+          {entry.role && <span>{entry.role}</span>}
+        </p>
+      )
+    }
+
+    {
+      (entry.outcome ?? entry.summary) && (
+        <p class="caption-block__outcome">
+          {entry.outcome ?? entry.summary}
+        </p>
+      )
+    }
+  </div>
+</article>
