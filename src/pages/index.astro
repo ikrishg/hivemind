@@ -1,8 +1,144 @@
 ---
-import ComingSoon from "~components/ComingSoon.astro";
+import { Image } from "astro:assets";
 import RootLayout from "~layouts/RootLayout.astro";
+import { SiteContent } from "~lib/SiteContent";
+import { WritingCatalog } from "~lib/WritingCatalog";
+import { formatDate } from "~lib/utils";
+import portrait from "~assets/krish-portrait.jpg";
+import { description, socials, title } from "~shared";
+
+const now = SiteContent.getNowBlock();
+const work = SiteContent.getHomeWork();
+const writing = await WritingCatalog.recent(4);
+
+const socialLinks = [
+  { label: "X", href: socials.x },
+  { label: "LinkedIn", href: socials.linkedin },
+  { label: "GitHub", href: socials.github },
+  { label: "Substack", href: socials.substack },
+  { label: "Email", href: socials.email },
+] as const;
 ---
 
-<RootLayout>
-  <ComingSoon />
+<RootLayout head={{ title, description }}>
+  <div class="mx-8 py-12 lg:py-20">
+    <section class="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-16">
+      <div class="max-w-3xl space-y-6">
+        <h1 class="font-serif text-5xl font-bold leading-tight md:text-6xl">
+          {title}
+        </h1>
+        <p class="max-w-2xl text-lg leading-relaxed text-foreground/90">
+          {description} I'm {SiteContent.age}.
+        </p>
+      </div>
+
+      <Image
+        src={portrait}
+        alt="Portrait of Krish Gupta"
+        width={192}
+        height={192}
+        class="mx-auto rounded-full border border-foreground/10 lg:mx-0"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </section>
+
+    <section class="mt-16 max-w-3xl border-l-2 border-foreground/20 pl-6">
+      <p class="text-sm font-medium uppercase tracking-wide text-foreground/60">
+        Now · {now.date}
+      </p>
+      <ul class="mt-4 space-y-3 text-base leading-relaxed">
+        {now.lines.map((line) => <li>{line}</li>)}
+      </ul>
+    </section>
+
+    <section class="mt-20">
+      <div class="mb-8 flex items-end justify-between gap-4">
+        <h2 class="font-serif text-3xl font-bold md:text-4xl">Work</h2>
+        <a
+          href="/work"
+          class="text-sm underline-offset-4 hover:underline"
+        >
+          All work →
+        </a>
+      </div>
+      <ul class="grid gap-8 md:grid-cols-3">
+        {
+          work.map((entry) => (
+            <li class="flex flex-col gap-3 border-t border-foreground/15 pt-5">
+              <a
+                href={entry.href}
+                class="font-serif text-2xl font-semibold underline-offset-4 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {entry.name}
+              </a>
+              <p class="text-sm leading-relaxed">{entry.summary}</p>
+              {entry.metric && (
+                <p class="text-sm font-medium text-foreground/70">{entry.metric}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-20">
+      <div class="mb-8 flex items-end justify-between gap-4">
+        <h2 class="font-serif text-3xl font-bold md:text-4xl">Writing</h2>
+        <a
+          href="/writing"
+          class="text-sm underline-offset-4 hover:underline"
+        >
+          All writing →
+        </a>
+      </div>
+      <ul class="space-y-4">
+        {
+          writing.map((piece) => (
+            <li>
+              <a
+                href={piece.href}
+                class="group flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between"
+                target={piece.external ? "_blank" : undefined}
+                rel={piece.external ? "noopener noreferrer" : undefined}
+              >
+                <span class="font-medium group-hover:underline underline-offset-4">
+                  {piece.title}
+                  {piece.external ? " ↗" : ""}
+                </span>
+                <span class="text-sm text-foreground/60">
+                  {formatDate(piece.date, { month: "short", day: "numeric", year: "numeric" })}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="contact" class="mt-20 border-t border-foreground/10 pt-12">
+      <h2 class="font-serif text-3xl font-bold md:text-4xl">Contact</h2>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed">
+        Reach me on any of these — I read everything.
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-4">
+        {
+          socialLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="rounded border border-foreground/15 px-4 py-2 text-sm transition-colors hover:bg-foreground/5"
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
 </RootLayout>
