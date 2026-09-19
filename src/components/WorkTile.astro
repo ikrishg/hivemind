@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { WorkEntry } from "~lib/SiteContent";
+import { SiteContent } from "~lib/SiteContent";
 
 export interface Props {
   entry: WorkEntry;
@@ -9,7 +10,7 @@ export interface Props {
 
 const { entry, priority = false } = Astro.props;
 const accentClass = entry.accent ? `accent-dot--${entry.accent}` : "accent-dot--cobalt";
-const outcome = entry.outcome ?? entry.summary;
+const outcome = SiteContent.formatWorkOutcome(entry);
 ---
 
 <article class="group flex flex-col">
@@ -22,7 +23,7 @@ const outcome = entry.outcome ?? entry.summary;
     <div class="aspect-[4/3] overflow-hidden bg-rule">
       <Image
         src={entry.image}
-        alt=""
+        alt={`${entry.name} cover`}
         width={640}
         height={480}
         class="h-full w-full object-cover slow-hover-image group-hover:opacity-92"
