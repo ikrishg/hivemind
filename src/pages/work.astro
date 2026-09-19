@@ -1,8 +1,60 @@
 ---
 import RootLayout from "~layouts/RootLayout.astro";
-import ComingSoon from "~components/ComingSoon.astro";
+import { SiteContent } from "~lib/SiteContent";
+
+const work = SiteContent.getWorkPage();
 ---
 
-<RootLayout head={{ title: "Work | Krish Gupta", description: "Work by Krish Gupta — coming soon." }}>
-  <ComingSoon title="Work" />
+<RootLayout
+  head={{
+    title: "Work | Krish Gupta",
+    description:
+      "Shipped work by Krish Gupta — reseter.css, community programs, backend engineering, and DevRel.",
+  }}
+>
+  <div class="mx-8 py-12 lg:py-20">
+    <header class="max-w-3xl space-y-4">
+      <h1 class="font-serif text-5xl font-bold md:text-6xl">Work</h1>
+      <p class="text-lg leading-relaxed text-foreground/90">
+        Shipped projects and roles — what they are, why they exist, and one
+        number when I have it.
+      </p>
+    </header>
+
+    <ol class="mt-16 max-w-3xl space-y-12">
+      {
+        work.map((entry) => (
+          <li class:list={["border-t border-foreground/15 pt-8", entry.quiet && "opacity-90"]}>
+            <a
+              href={entry.href}
+              class="font-serif text-3xl font-semibold underline-offset-4 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {entry.name}
+            </a>
+            <p class="mt-3 text-base leading-relaxed">{entry.summary}</p>
+            <p class="mt-3 text-sm leading-relaxed text-foreground/80">{entry.why}</p>
+            {entry.metric && (
+              <p class="mt-3 text-sm font-medium">{entry.metric}</p>
+            )}
+            {entry.quiet && (
+              <p class="mt-3 text-sm text-foreground/70">
+                I run a fractional DevRel consultancy at{" "}
+                <a
+                  href="https://devocado.tech"
+                  class="underline underline-offset-4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  devocado.tech
+                </a>
+                .
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
 </RootLayout>
