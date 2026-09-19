@@ -184,6 +184,17 @@ export class SiteContent {
     return [entry.year, entry.context, entry.role].filter(Boolean).join(" · ");
   }
 
+  static formatWorkOutcome(entry: WorkEntry): string {
+    const outcome = entry.outcome ?? entry.summary;
+    if (entry.metric && outcome) {
+      if (outcome.includes(entry.metric)) {
+        return outcome;
+      }
+      return `${entry.metric} · ${outcome}`;
+    }
+    return entry.metric ?? outcome;
+  }
+
   static getAboutTimeline(): TimelineEntry[] {
     return [
       {
