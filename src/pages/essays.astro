@@ -12,8 +12,20 @@ const years = WritingCatalog.groupByYear(pieces);
     title: "Essays | Krish Gupta",
     description: "Essays by Krish Gupta",
   }}
-  class:list="mx-8 flex flex-1 h-max flex-col justify-center py-40"
 >
-  <h1 class="mb-12 font-serif text-6xl font-bold lg:text-8xl">Essays</h1>
-  <YearGroupedWritingList years={years} />
+  <div class="site-shell site-shell--narrow">
+    <header class="space-y-4">
+      <p class="micro-label">Archive</p>
+      <h1 class="display-serif text-5xl md:text-6xl">Essays</h1>
+      <nav class="text-sm text-ink-muted" aria-label="Writing">
+        <a href="/writing" class="underline-offset-4 slow-hover hover:underline">
+          ← All writing
+        </a>
+      </nav>
+    </header>
+
+    <div class="mt-16 lg:mt-20">
+      <YearGroupedWritingList years={years} />
+    </div>
+  </div>
 </RootLayout>

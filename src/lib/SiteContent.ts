@@ -1,12 +1,26 @@
+import type { ImageMetadata } from "astro";
+import opensourceBigContributions from "~assets/opensource-big-contributions.webp";
+import letsDoThis from "~assets/lets-do-this.webp";
+import noCodeContribution from "~assets/no-code-contribution.webp";
+import devopsProcess from "~assets/devops-process.webp";
+import opensourceAttraction from "~assets/opensource-attraction.webp";
+import profileWithReadme from "~assets/profile-with-readme.webp";
+import coffee from "~assets/coffee.webp";
 import { description, socials, title } from "~shared";
 
 export type WorkEntry = {
   name: string;
   summary: string;
   why: string;
-  metric?: string;
   href: string;
+  image?: ImageMetadata;
+  year?: string;
+  context?: string;
+  role?: string;
+  outcome?: string;
+  metric?: string;
   quiet?: boolean;
+  accent?: "cobalt" | "sky" | "lavender" | "coral";
 };
 
 export type TimelineEntry = {
@@ -14,35 +28,59 @@ export type TimelineEntry = {
   text: string;
 };
 
-export type NowBlock = {
-  date: string;
-  lines: readonly string[];
+export type AboutRole = {
+  title: string;
+  org: string;
+  detail: string;
 };
 
 export class SiteContent {
   static readonly tagline = description;
 
+  static readonly thesis =
+    "I build developer tools and agentic systems — shipped reseter.css at 12, still shipping in public.";
+
   static readonly age = 17;
+
+  static readonly timezone = "IST (Bengaluru)";
 
   static readonly reseterStars = 1240;
 
   static readonly reseterCdnPerYear = "5M+";
 
-  static getNowBlock(now = new Date()): NowBlock {
-    const date = now.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  static getCapabilities(): readonly string[] {
+    return [
+      "Agentic AI and developer tooling",
+      "Backend APIs, deployment pipelines, and production ops",
+      "Developer relations — docs, onboarding, ambassador programs",
+      "Open-source maintenance at scale",
+      "Technical writing and workshop facilitation",
+    ];
+  }
 
-    return {
-      date,
-      lines: [
-        "I study computer science and statistics in Bengaluru while building in public.",
-        "I run Devocado, a fractional DevRel consultancy for API and AI startups.",
-        "Most of my energy goes into agentic AI, developer tooling, and shipping docs people can actually use.",
-      ],
-    };
+  static getAboutRoles(): AboutRole[] {
+    return [
+      {
+        title: "Founder",
+        org: "Devocado",
+        detail: "Fractional DevRel for API and AI startups.",
+      },
+      {
+        title: "Backend engineer",
+        org: "Sudan's Tech",
+        detail: "APIs and deployment for Jammu & Kashmir's first student-led tech nonprofit.",
+      },
+      {
+        title: "DevRel",
+        org: "Sema",
+        detail: "Ambassador programs for a global code-review education community.",
+      },
+      {
+        title: "Software engineering intern",
+        org: "Playlistwise",
+        detail: "React and Next.js product work with Supabase-backed CRUD.",
+      },
+    ];
   }
 
   static getHomeWork(): WorkEntry[] {
@@ -51,25 +89,39 @@ export class SiteContent {
         name: "reseter.css",
         summary: "Modern CSS reset used across production sites worldwide.",
         why: "I wanted a zero-dependency reset that fixed real browser inconsistencies without wiping useful defaults.",
+        outcome: `${SiteContent.reseterStars.toLocaleString()} GitHub stars · ${SiteContent.reseterCdnPerYear} jsDelivr requests/year`,
         metric: `${SiteContent.reseterStars.toLocaleString()} GitHub stars`,
         href: "https://github.com/ikrishg/reseter.css",
+        image: opensourceBigContributions,
+        context: "Open source",
+        role: "Creator",
+        accent: "cobalt",
       },
       {
         name: "bot-dc-htm",
-        summary:
-          "Discord economy bot for one of India's largest hackathons.",
+        summary: "Discord economy bot for one of India's largest hackathons.",
         why:
           "Built a TypeScript Discord bot with the Sapphire framework to manage in-server economy flows during the event.",
+        outcome: "TypeScript Discord bot with in-server economy flows",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/bot-dc-htm",
+        image: letsDoThis,
+        context: "Hackathon tooling",
+        role: "Builder",
+        accent: "coral",
       },
       {
         name: "fastn workshop",
         summary: "Hands-on workshop for learning fastn.",
         why:
           "Created for the EduHub Roadshow Jaipur — a simple fastn and FTD starter with GitHub Pages deployment.",
+        outcome: "fastn and FTD starter with GitHub Pages deployment",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/fastn-workshop",
+        image: noCodeContribution,
+        context: "EduHub Roadshow Jaipur",
+        role: "Workshop lead",
+        accent: "sky",
       },
     ];
   }
@@ -81,31 +133,55 @@ export class SiteContent {
         name: "Sudan's Tech",
         summary: "Backend work for Jammu & Kashmir's first student-led tech nonprofit.",
         why: "Built APIs and deployment pipelines so the community could ship programs for underprivileged students.",
+        outcome: "Govt. of India–registered nonprofit",
         metric: "Govt. of India–registered nonprofit",
         href: "https://www.sudanstech.com/",
+        image: devopsProcess,
+        context: "Student-led nonprofit",
+        role: "Backend engineer",
+        accent: "lavender",
       },
       {
         name: "Sema",
         summary: "DevRel for a global code-review education community.",
         why: "Ran ambassador programs and sessions for 1,000+ reviewers learning how to review code well.",
+        outcome: "12 global ambassadors · 1,000+ reviewers",
         metric: "12 global ambassadors",
         href: "https://www.semasoftware.com/",
+        image: opensourceAttraction,
+        context: "Code-review education",
+        role: "DevRel",
+        accent: "cobalt",
       },
       {
         name: "Playlistwise",
         summary: "Software engineering internship on a React and Next.js product team.",
         why: "Shipped UI flows, Supabase-backed CRUD, and production deployments on Appwrite and Netlify.",
+        outcome: "15+ UI flows shipped",
         metric: "15+ UI flows shipped",
         href: "https://www.linkedin.com/in/kkrishguptaa/details/experience/",
+        image: profileWithReadme,
+        context: "React & Next.js product",
+        role: "Software engineering intern",
+        accent: "sky",
       },
       {
         name: "Devocado",
         summary: "Fractional DevRel consultancy for API and AI startups.",
         why: "I help founders turn docs, onboarding, and agent-ready surfaces into adoption.",
+        outcome: "Docs, onboarding, and agent-ready surfaces for adoption",
         href: "https://devocado.tech",
+        image: coffee,
+        context: "API & AI startups",
+        role: "Founder · fractional DevRel",
         quiet: true,
+        accent: "lavender",
       },
     ];
+  }
+
+  static formatWorkMeta(entry: WorkEntry): string {
+    return [entry.year, entry.context, entry.role].filter(Boolean).join(" · ");
   }
 
   static getAboutTimeline(): TimelineEntry[] {
