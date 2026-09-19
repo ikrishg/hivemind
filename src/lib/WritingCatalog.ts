@@ -127,7 +127,7 @@ export class WritingCatalog {
 
   /** Subtle paper tint for typographic poem cards — variety from index, not shared imagery. */
   static poemSheetTint(index: number): string {
-    const tints = ["#c9b8a4", "#b8c4b0", "#c4b8c9", "#c9c0b0", "#b0b8c4", "#c4b0b8"];
+    const tints = ["#2f4acb", "#6eb5e8", "#b8a9d9", "#e8876f", "#2f4acb", "#b8a9d9"];
     return tints[index % tints.length];
   }
 }
