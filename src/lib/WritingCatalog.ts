@@ -1,3 +1,4 @@
+import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
 import { site } from "~shared";
 
@@ -11,6 +12,7 @@ export type WritingPiece = {
   external: boolean;
   tags: string[];
   kind: WritingKind;
+  cover?: ImageMetadata;
 };
 
 export class WritingCatalog {
@@ -40,6 +42,7 @@ export class WritingCatalog {
         external: false,
         tags: article.data.tags ?? ["article"],
         kind: "article" as const,
+        cover: article.data.cover,
       })),
       ...externalArticles.map((article) => ({
         title: article.data.title,
@@ -49,6 +52,7 @@ export class WritingCatalog {
         external: true,
         tags: article.data.tags ?? ["article"],
         kind: "article" as const,
+        cover: article.data.cover,
       })),
       ...essays.map((essay) => ({
         title: essay.data.title,
@@ -58,6 +62,7 @@ export class WritingCatalog {
         external: false,
         tags: essay.data.tags ?? ["essay"],
         kind: "essay" as const,
+        cover: essay.data.cover,
       })),
       ...externalEssays.map((essay) => ({
         title: essay.data.title,
@@ -67,6 +72,7 @@ export class WritingCatalog {
         external: true,
         tags: essay.data.tags ?? ["essay"],
         kind: "essay" as const,
+        cover: essay.data.cover,
       })),
       ...poems.map((poem) => ({
         title: poem.data.title,
@@ -76,6 +82,7 @@ export class WritingCatalog {
         external: false,
         tags: poem.data.tags ?? ["poem"],
         kind: "poem" as const,
+        cover: poem.data.cover,
       })),
       ...externalPoems.map((poem) => ({
         title: poem.data.title,
@@ -85,6 +92,7 @@ export class WritingCatalog {
         external: true,
         tags: poem.data.tags ?? ["poem"],
         kind: "poem" as const,
+        cover: poem.data.cover,
       })),
     ];
 
@@ -94,6 +102,11 @@ export class WritingCatalog {
   static async recent(limit: number): Promise<WritingPiece[]> {
     const pieces = await WritingCatalog.load();
     return pieces.filter((piece) => piece.kind !== "poem").slice(0, limit);
+  }
+
+  static async loadByKind(kind: WritingKind): Promise<WritingPiece[]> {
+    const pieces = await WritingCatalog.load();
+    return pieces.filter((piece) => piece.kind === kind);
   }
 
   static groupByYear(pieces: WritingPiece[]) {
