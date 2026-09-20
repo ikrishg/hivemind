@@ -11,12 +11,13 @@ export interface Props {
 }
 
 const { head, hideTemplate, class: className } = Astro.props;
+const shellClass = className?.includes("poems-charcoal") ? "poems-charcoal" : undefined;
 ---
 
 <!doctype html>
 <html lang="en" class="antialiased font-body">
   <Head {...head} />
-  <body class="flex min-h-screen flex-col">
+  <body class:list={["flex min-h-screen flex-col", shellClass]}>
     {!hideTemplate && <Header />}
     <main class:list={["flex-1", className]}>
       <slot />

@@ -1,11 +1,12 @@
 import type { ImageMetadata } from "astro";
-import comparePullRequestButton from "~assets/compare-pull-request-button.webp";
-import createBranchOnGithub from "~assets/create-branch-on-github.webp";
-import devopsProcess from "~assets/devops-process.webp";
-import mergePrGithub from "~assets/merge-pr-github.webp";
-import noCodeContribution from "~assets/no-code-contribution.webp";
-import profileWithReadme from "~assets/profile-with-readme.webp";
-import coffee from "~assets/coffee.webp";
+import coverBotDcHtm from "~assets/cover-bot-dc-htm.webp";
+import coverDevocado from "~assets/cover-devocado.webp";
+import coverFastnWorkshop from "~assets/cover-fastn-workshop.webp";
+import coverPlaylistwise from "~assets/cover-playlistwise.webp";
+import coverReseterLead from "~assets/cover-reseter-lead.webp";
+import coverReseterTile from "~assets/cover-reseter-tile.webp";
+import coverSema from "~assets/cover-sema.webp";
+import coverSudansTech from "~assets/cover-sudans-tech.webp";
 import { description, socials, title } from "~shared";
 
 export type WorkEntry = {
@@ -42,7 +43,7 @@ export class SiteContent {
 
   static readonly age = 17;
 
-  static readonly timezone = "IST (Bengaluru)";
+  static readonly timezone = "Bengaluru (IST)";
 
   static readonly reseterStars = 1240;
 
@@ -92,7 +93,7 @@ export class SiteContent {
         outcome: `${SiteContent.reseterStars.toLocaleString()} GitHub stars · ${SiteContent.reseterCdnPerYear} jsDelivr requests/year`,
         metric: `${SiteContent.reseterStars.toLocaleString()} GitHub stars`,
         href: "https://github.com/ikrishg/reseter.css",
-        image: mergePrGithub,
+        image: coverReseterTile,
         context: "Open source",
         role: "Creator",
         accent: "cobalt",
@@ -105,7 +106,7 @@ export class SiteContent {
         outcome: "TypeScript Discord bot with in-server economy flows",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/bot-dc-htm",
-        image: createBranchOnGithub,
+        image: coverBotDcHtm,
         context: "Hackathon tooling",
         role: "Builder",
         accent: "coral",
@@ -118,7 +119,7 @@ export class SiteContent {
         outcome: "fastn and FTD starter with GitHub Pages deployment",
         metric: "11 GitHub stars",
         href: "https://github.com/ikrishg/fastn-workshop",
-        image: noCodeContribution,
+        image: coverFastnWorkshop,
         context: "EduHub Roadshow Jaipur",
         role: "Workshop lead",
         accent: "sky",
@@ -136,7 +137,7 @@ export class SiteContent {
         outcome: "Govt. of India–registered nonprofit",
         metric: "Govt. of India–registered nonprofit",
         href: "https://www.sudanstech.com/",
-        image: devopsProcess,
+        image: coverSudansTech,
         context: "Student-led nonprofit",
         role: "Backend engineer",
         accent: "lavender",
@@ -148,7 +149,7 @@ export class SiteContent {
         outcome: "12 global ambassadors · 1,000+ reviewers",
         metric: "12 global ambassadors",
         href: "https://www.semasoftware.com/",
-        image: comparePullRequestButton,
+        image: coverSema,
         context: "Code-review education",
         role: "DevRel",
         accent: "cobalt",
@@ -160,7 +161,7 @@ export class SiteContent {
         outcome: "15+ UI flows shipped",
         metric: "15+ UI flows shipped",
         href: "https://www.linkedin.com/in/kkrishguptaa/details/experience/",
-        image: profileWithReadme,
+        image: coverPlaylistwise,
         context: "React & Next.js product",
         role: "Software engineering intern",
         accent: "sky",
@@ -171,7 +172,7 @@ export class SiteContent {
         why: "I help founders turn docs, onboarding, and agent-ready surfaces into adoption.",
         outcome: "Docs, onboarding, and agent-ready surfaces for adoption",
         href: "https://devocado.tech",
-        image: coffee,
+        image: coverDevocado,
         context: "API & AI startups",
         role: "Founder · fractional DevRel",
         quiet: true,
@@ -228,6 +229,10 @@ export class SiteContent {
       email: "send@krishg.com",
       href: "mailto:send@krishg.com",
     };
+  }
+
+  static getReseterLeadCover(): ImageMetadata {
+    return coverReseterLead;
   }
 
   static getPersonSchema(siteUrl: string) {

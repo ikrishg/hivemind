@@ -244,6 +244,46 @@ body {
     min-height: 100%;
   }
 
+  body.poems-charcoal {
+    --background: var(--poem-charcoal);
+    --foreground: var(--poem-ink);
+    --ink: var(--poem-ink);
+    --ink-muted: var(--poem-ink-muted);
+    --ink-faint: var(--poem-ink-faint);
+    --rule: var(--poem-rule);
+    background: linear-gradient(
+      168deg,
+      var(--poem-midnight) 0%,
+      var(--poem-charcoal) 42%,
+      color-mix(in srgb, var(--poem-midnight) 70%, var(--poem-charcoal)) 100%
+    );
+    color: var(--poem-ink);
+  }
+
+  body.poems-charcoal .site-header,
+  body.poems-charcoal footer {
+    background: transparent;
+    border-color: var(--poem-rule);
+    color: var(--poem-ink);
+  }
+
+  body.poems-charcoal .site-header a,
+  body.poems-charcoal footer a {
+    color: inherit;
+  }
+
+  body.poems-charcoal .mobile-nav-panel {
+    background: var(--poem-midnight);
+  }
+
+  body.poems-charcoal .mobile-nav-toggle {
+    color: var(--poem-ink);
+  }
+
+  body.poems-charcoal .mobile-nav-toggle:hover {
+    color: var(--poem-ink-muted);
+  }
+
   .poems-charcoal .micro-label {
     color: var(--poem-ink-muted);
   }
