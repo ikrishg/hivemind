@@ -4,11 +4,11 @@ import RootLayout from "~layouts/RootLayout.astro";
 import WorkTile from "~components/WorkTile.astro";
 import { SiteContent } from "~lib/SiteContent";
 import portrait from "~assets/krish-portrait.jpg";
-import mergePrGithub from "~assets/merge-pr-github.webp";
 import { description, socials, title } from "~shared";
 
 const work = SiteContent.getHomeWork();
 const reseter = work[0];
+const reseterLeadCover = SiteContent.getReseterLeadCover();
 const contact = SiteContent.getContact();
 ---
 
@@ -30,7 +30,7 @@ const contact = SiteContent.getContact();
         >
           <div class="aspect-[5/4] overflow-hidden bg-rule lg:aspect-[4/3]">
             <Image
-              src={mergePrGithub}
+              src={reseterLeadCover}
               alt=""
               width={800}
               height={640}
@@ -66,7 +66,7 @@ const contact = SiteContent.getContact();
             <p class="micro-label">{title}</p>
             <p class="text-base leading-relaxed text-ink-muted">
               Engineer, builder, sidequester — {SiteContent.age}. Based in
-              Bengaluru ({SiteContent.timezone}).
+              {SiteContent.timezone}.
             </p>
           </div>
         </div>
