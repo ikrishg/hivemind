@@ -56,6 +56,13 @@ const covers = [
     accent: "#b8a9d9",
     background: "#f0edf2",
   },
+  {
+    file: "cover-sudans-tech.webp",
+    title: "Sudan's Tech",
+    subtitle: "Student-led nonprofit · backend",
+    accent: "#b8a9d9",
+    background: "#f1eef4",
+  },
 ];
 
 function escapeXml(value) {
@@ -89,7 +96,7 @@ function buildSvg({ title, subtitle, accent, background }) {
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#ink-wash-2)" />
   <line x1="96" y1="${HEIGHT - 96}" x2="${WIDTH - 96}" y2="${HEIGHT - 96}" stroke="#141414" stroke-opacity="0.12" />
   <circle cx="120" cy="132" r="10" fill="${accent}" />
-  <text x="144" y="142" fill="#141414" fill-opacity="0.42" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="6">SELECTED WORK</text>
+  <text x="144" y="142" fill="#141414" fill-opacity="0.42" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="6">PROJECT</text>
   <text x="96" y="360" fill="#141414" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="-2">${escapeXml(title)}</text>
   <text x="98" y="430" fill="#141414" fill-opacity="0.62" font-family="Arial, Helvetica, sans-serif" font-size="34" letter-spacing="0.5">${escapeXml(subtitle)}</text>
 </svg>`;
