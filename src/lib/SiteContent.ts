@@ -6,7 +6,7 @@ import coverPlaylistwise from "~assets/cover-playlistwise.webp";
 import coverReseterLead from "~assets/cover-reseter-lead.webp";
 import coverReseterTile from "~assets/cover-reseter-tile.webp";
 import coverSema from "~assets/cover-sema.webp";
-import devopsProcess from "~assets/devops-process.webp";
+import coverSudansTech from "~assets/cover-sudans-tech.webp";
 import { description, socials, title } from "~shared";
 
 export type WorkEntry = {
@@ -137,7 +137,7 @@ export class SiteContent {
         outcome: "Govt. of India–registered nonprofit",
         metric: "Govt. of India–registered nonprofit",
         href: "https://www.sudanstech.com/",
-        image: devopsProcess,
+        image: coverSudansTech,
         context: "Student-led nonprofit",
         role: "Backend engineer",
         accent: "lavender",
