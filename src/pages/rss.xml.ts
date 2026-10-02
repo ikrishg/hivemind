@@ -4,9 +4,9 @@ import { description, site, title } from '~shared';
 
 export async function GET() {
   const articles = [
-    ...(await getCollection('articles')).filter(post => !post.data.draft),
-    ...(await getCollection('essays')).filter(post => !post.data.draft),
-    ...(await getCollection('poems')).filter(post => !post.data.draft),
+    ...(await getCollection('articles')).filter(post => !post.data.draft).filter(post => !post.data.canonical),
+    ...(await getCollection('essays')).filter(post => !post.data.draft).filter(post => !post.data.canonical),
+    ...(await getCollection('poems')).filter(post => !post.data.draft).filter(post => !post.data.canonical),
   ];
 
   return rss({
