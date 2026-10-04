@@ -30,6 +30,6 @@ This is where I reel in and blame floccinaucinihilipilification. If we just stop
 
 Last month, I emailed a YC general partner to get feedback on my idea. If it were me two months ago, I would’ve never emailed, but guess… because I didn’t think that the attempt to email would be futile, I did it and received a response. His advice…
 
-[![You will never know what works, until you do it.](~assets/jared-advice-tweet.webp)](https://x.com/kkrishguptaa/status/2048681961838043333)
+[![You will never know what works, until you do it.](~assets/jared-advice-tweet.webp)](https://x.com/ikrishg/status/2048681961838043333)
 
 To end it on this note… Do things, don’t dismiss them. Your thoughts are incredible and they should live to see the light of the day.
