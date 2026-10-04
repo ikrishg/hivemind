@@ -160,7 +160,7 @@ export class SiteContent {
         why: "Shipped UI flows, Supabase-backed CRUD, and production deployments on Appwrite and Netlify.",
         outcome: "15+ UI flows shipped",
         metric: "15+ UI flows shipped",
-        href: "https://www.linkedin.com/in/kkrishguptaa/details/experience/",
+        href: "https://www.linkedin.com/in/ikrishg/details/experience/",
         image: coverPlaylistwise,
         context: "React & Next.js product",
         role: "Software engineering intern",
